@@ -1,0 +1,65 @@
+/* Set the font style and background color*/
+body {
+  background-color: bisque;
+  font: 2rem "Helvetica", sans-serif;
+  color: darkcyan;
+}
+
+/**/
+header {
+  padding-bottom: 1em;
+  padding-top: 0.5em;
+}
+
+/**/
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  /* margin: 0.3em;
+  padding: 0.3em; */
+  width: 20%;
+  background-color: darkgrey;
+  border: 0.1em solid chocolate;
+}
+
+/* List borders*/
+li {
+  border-bottom: 0.1em solid chocolate;
+  text-align: center;
+}
+li:last-child {
+  border-bottom: none;
+}
+
+/**/
+li a {
+  display: block;
+  color: white;
+  padding: 0.1em 0.3em;
+  text-decoration: none;
+}
+
+/* Change link color on hover */
+li a:hover {
+  background-color: burlywood;
+  color: green;
+}
+
+/* Active class to the current link to let user know which page they are on */
+.active {
+  background-color: violet;
+  color: green;
+}
+
+/* Full-height fixed vertical navbar */
+.full {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 25%;
+  background-color: blue;
+  height: 100%; /* full height */
+  position: fixed; /* stick even on scroll */
+  overflow: auto; /* enable scrolling if sidenav has too much content */
+}
