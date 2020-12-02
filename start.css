@@ -58,8 +58,9 @@ li a:hover {
   margin: 0;
   padding: 0;
   width: 25%;
-  background-color: blue;
-  height: 100%; /* full height */
+  /* background-color: blue; */
+  /* height: 100%;  */
+  bottom: 0;
   position: fixed; /* stick even on scroll */
   overflow: auto; /* enable scrolling if sidenav has too much content */
 }
