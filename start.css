@@ -1,8 +1,8 @@
 /* Set the font style and background color*/
 body {
-  background-color: bisque;
+  background-color: #2b2b2b;
   font: 2rem "Helvetica", sans-serif;
-  color: darkcyan;
+  color: #f1f1f1;
 }
 
 /**/
@@ -41,15 +41,13 @@ li a {
 }
 
 /* Change link color on hover */
-li a:hover {
+li .unselected:hover {
   background-color: burlywood;
-  color: green;
 }
 
 /* Active class to the current link to let user know which page they are on */
 .active {
-  background-color: violet;
-  color: green;
+  background-color: #808080;
 }
 
 /* Full-height fixed vertical navbar */
