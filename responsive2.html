@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang='en-US'>
+    <head>
+        <meta charset='ut-8'>
+        <meta name='viewport' content='width=device-width'>
+        <title>More responsive images</title>
+    </head>
+    <body>
+        <header>
+            <h1>Responsive Images</h1>
+        </header>
+
+        <main>
+            <section>
+                <h2>Art Direction</h2>
+                <picture>
+                    <source media='(max-width: 799px)' srcset='img/galata-400.png'>
+                    <source media='(min-width: 800px)' srcset='img/galata-800.png'>
+                    <img src='img/galata.png' alt='Galata tower of Istanbul'>
+                </picture>
+                <p>Hi</p>
+            </section>
+
+            <section>
+                <h2>Resolution Switching</h2>
+                <img srcset='img/balloons480.png 480w, 
+                            img/balloons800.png 800w'
+                    sizes='(max-width: 600px) 480px,
+                            800px'
+                    src='img/balloons800.png'
+                    alt='hot air baloons'>
+                <p>Hi</p>
+            </section>
+        </main>
+
+        <aside>
+
+        </aside>
+
+        <footer>
+
+        </footer>
+    </body>
+</html>
