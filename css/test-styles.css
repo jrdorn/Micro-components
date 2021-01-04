@@ -1,13 +1,15 @@
-h2 + p {
-  color: red;
+a {
+  border: 5px solid grey;
 }
 
-.list > li {
-  list-style-type: none;
-  border-bottom: 2px;
-  border-left: 0px;
-  border-right: 0px;
-  border-top: 0px;
-  border-style: solid;
-  border-color: grey;
+a[title] {
+  border-color: pink;
+}
+
+a[href*="contact"] {
+  border-color: orange;
+}
+
+a[href^="https"] {
+  border-color: green;
 }
