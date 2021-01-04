@@ -1,5 +1,15 @@
 /* || General setup */
 
+/* alternative box model */
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
 html,
 body {
   margin: 0;
@@ -54,7 +64,7 @@ li {
   line-height: 1.5;
 }
 
-/* || header layout */
+/* || Header layout */
 
 nav,
 article,
@@ -117,7 +127,21 @@ input[type="submit"] {
   color: white;
 }
 
-/* || main layout */
+/* || Main layout */
+
+/* giving links larger hit area with padding */
+.links-list a {
+  background-color: rgb(179, 57, 81);
+  color: #fff;
+  text-decoration: none;
+  padding: 1em 1em;
+  display: inline-block;
+}
+
+.links-list a:hover {
+  background-color: rgb(66, 28, 40);
+  color: #fff;
+}
 
 main {
   display: flex;
