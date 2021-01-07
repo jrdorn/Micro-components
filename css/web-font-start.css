@@ -30,7 +30,7 @@ body {
 /* Typography */
 
 h1 {
-  font-family: "quicksand-regular-webfont", serif;
+  font-family: "quicksandregular", serif;
   font-size: 3.2rem;
 }
 
@@ -39,7 +39,7 @@ h2 {
 }
 
 p {
-  font-family: "robotoslab-regular-webfont", serif;
+  font-family: "roboto_slabregular", serif;
   font-size: 1.4rem;
   line-height: 1.6;
   word-spacing: 0.6rem;
