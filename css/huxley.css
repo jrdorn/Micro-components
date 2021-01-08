@@ -1,0 +1,156 @@
+/* Fonts */
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Source+Serif+Pro&display=swap");
+
+/* General setup */
+
+* {
+  box-sizing: border-box;
+  font-size: 10px;
+}
+
+h1 {
+  font-size: 3rem;
+  text-align: center;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+p,
+li,
+a {
+  font-size: 1.5rem;
+}
+
+body {
+  line-height: 1.5;
+  margin: 0 auto;
+  min-width: 1000px;
+  max-width: 1400px;
+  font-family: "Source Serif Pro", serif;
+  letter-spacing: 0.08rem;
+  word-spacing: 0.2rem;
+}
+
+h1,
+h2 {
+  font-family: "Roboto Slab", serif;
+  letter-spacing: 0.2rem;
+}
+
+/* Layout */
+
+section {
+  float: left;
+  width: 50%;
+}
+
+aside {
+  float: left;
+  width: 30%;
+}
+
+nav {
+  float: left;
+  width: 20%;
+}
+
+footer {
+  clear: both;
+}
+
+header,
+section,
+aside,
+nav,
+footer {
+  padding: 20px;
+}
+
+/* Header and footer */
+
+header,
+footer {
+  border-top: 5px solid #a66;
+  border-bottom: 5px solid #a66;
+}
+
+/* ***************************************** */
+
+h2 + p {
+  text-indent: 20px;
+}
+
+a {
+  color: #a66;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #c26b96;
+}
+
+a:focus {
+  color: #b865b8;
+}
+
+a:hover {
+  color: #c2776b;
+}
+
+a:active {
+  color: sienna;
+}
+
+a[href*="http"] {
+  background: url("../img/ext.png") no-repeat 100% 0;
+  background-size: 1.5rem 1.5rem;
+  padding-right: 2rem;
+}
+
+li {
+  list-style-type: square;
+}
+
+/* styling link as button */
+
+nav ul {
+  padding: 0;
+  width: 100%;
+  text-align: center;
+}
+
+nav ul li {
+  display: block;
+}
+
+nav ul li a {
+  outline: none;
+  text-decoration: none;
+  text-align: center;
+  line-height: 3;
+  color: white;
+  padding: 0.7rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+nav ul li a:link,
+a:visited,
+a:focus {
+  background: #a66;
+  color: darkred;
+}
+
+nav ul li a:hover {
+  background: orange;
+}
+
+nav ul li a:active {
+  background: brown;
+  color: white;
+}
