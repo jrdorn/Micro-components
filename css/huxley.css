@@ -125,7 +125,10 @@ nav ul {
 }
 
 nav ul li {
-  display: block;
+  border: 0.1rem solid brown;
+  border-radius: 5px;
+  margin: 10px;
+  list-style-type: none;
 }
 
 nav ul li a {
@@ -133,24 +136,21 @@ nav ul li a {
   text-decoration: none;
   text-align: center;
   line-height: 3;
-  color: white;
-  padding: 0.7rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  color: brown;
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
 }
 
 nav ul li a:link,
 a:visited,
 a:focus {
-  background: #a66;
   color: darkred;
 }
 
 nav ul li a:hover {
-  background: orange;
+  color: orange;
 }
 
 nav ul li a:active {
-  background: brown;
-  color: white;
+  color: #a66;
 }
