@@ -49,3 +49,33 @@ nav a {
 .feature {
   width: 200px;
 }
+
+/********************/
+
+ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+nav {
+  position: sticky;
+  top: 0;
+}
+
+.feature {
+  float: left;
+  padding-right: 0.5em;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 1em;
+}
+
+.photos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+}
