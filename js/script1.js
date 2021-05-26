@@ -145,3 +145,44 @@ for (let current = 20; ; current += 1) {
 //     console.log("Unknown weather type!");
 //   break;
 // }
+
+//Looping a Triangle
+let myT = "#";
+for (let i = 0; i < 7; i++) {
+  console.log(myT);
+  myT += "#";
+}
+
+//FizzBuzz
+// let num = 1;
+// for (let i = 0; i < 100; i++) {
+//   if (num % 3 === 0 && num % 5 === 0) {
+//     console.log("FizzBuzz");
+//   } else if (num % 3 === 0) {
+//     console.log("Fizz");
+//   } else if (num % 5 === 0) {
+//     console.log("Buzz");
+//   } else {
+//     console.log(num);
+//   }
+//   num += 1;
+// }
+
+//Chessboard
+function chessBoard() {
+  let cString = " ";
+  let bString = "";
+
+  for (let i = 0; i < 8; i++) {
+    if (i % 2 === 0) {
+      bString = " ";
+    } else {
+      bString = "#";
+    }
+    cString += bString;
+  }
+
+  return cString;
+}
+
+console.log(chessBoard());
