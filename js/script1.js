@@ -169,20 +169,32 @@ for (let i = 0; i < 7; i++) {
 // }
 
 //Chessboard
-function chessBoard() {
-  let cString = " ";
-  let bString = "";
+//X by X grid
+function chessBoard(size) {
+  let line = "";
+  let block = "O";
+  let boardString = "";
+  let upperLimit = size * size + 1;
 
-  for (let i = 0; i < 8; i++) {
-    if (i % 2 === 0) {
-      bString = " ";
+  for (let i = 1; i < upperLimit; i++) {
+    line += block;
+    if (block === "O") {
+      block = "X";
     } else {
-      bString = "#";
+      block = "O";
     }
-    cString += bString;
+    if (i % size === 0) {
+      boardString += "\n" + line;
+      line = "";
+      if (block === "O") {
+        block = "X";
+      } else {
+        block = "O";
+      }
+    }
   }
 
-  return cString;
+  return boardString;
 }
 
-console.log(chessBoard());
+console.log(chessBoard(20));
