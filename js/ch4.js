@@ -321,20 +321,25 @@ let deepEqual = (first, second) => {
       //recursively compare prop values,
       //directly comparing values and recursing further for objects
       for (let j = 0; j < firstKeys.length; j++) {
-        return deepEqual(first[firstKeys[j]], second[secondKeys[j]]);
+        console.log("hi");
+        if (!deepEqual(first[firstKeys[j]], second[secondKeys[j]])) {
+          return false;
+        }
       }
     }
   } else {
     //compare values directly
     if (first !== second) {
+      console.log("ho");
       return false;
     }
   }
   return true;
 };
+// unit tests
 let anoLst = arrayToList(["a", "b", "c"]);
-let anoLst2 = arrayToList(["a", 2, "c"]);
+let anoLst2 = arrayToList(["a", 5, "c"]);
 // console.log(deepEqual(anoLst, anoLst2)); //false
-let aG = [1, 3];
-let bG = [1, 2];
-console.log(deepEqual(aG, bG));
+// let aG = [1, "2"];
+// let bG = [1, 2];
+// console.log(deepEqual(aG, bG));
