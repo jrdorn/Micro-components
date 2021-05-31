@@ -283,3 +283,98 @@ let rix = new SymmetricMatrix(5, (x, y) => `${x},${y}`);
 
 // console.log(new SymmetricMatrix(2) instanceof Matrix);
 // console.log([1] instanceof Array);
+
+//EXERCISES
+
+//A Vector Type
+
+//class Vec represents a 2D vector
+//plus and minus methods take another vector as a param
+//  and return a new vector with the sum or difference of the two vectors (this and the param) x and y values
+
+class Vec {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+  plus(vX, vY) {
+    this.x += vX;
+    this.y += vY;
+  }
+  minus(vX, vY) {
+    this.x -= vX;
+    this.y -= vY;
+  }
+  get length() {
+    //compute the length of the vector (distance of point x,y from origin 0,0)
+    return Math.abs(this.x * this.y);
+  }
+}
+
+// let newVec = new Vec(2, 2);
+// console.log(newVec.length);
+
+//Groups/ Iterable/ Borrowing a Method
+
+class Group extends Object {
+  constructor(...members) {
+    super();
+    this.members = members;
+    this.head = this.members[0];
+  }
+  //add value to group (if it isn't already a member)
+  add(val) {
+    for (let elem of this.members) {
+      if (elem === val) {
+        return console.error("Err: already present");
+      }
+    }
+    this.members.push(val);
+  }
+  //remove arg from group (if it was a member)
+  delete(val) {
+    for (let elem of this.members) {
+      if (elem === val) {
+        let delIndex = this.members.indexOf(elem);
+        return this.members.splice(delIndex, 1);
+      }
+    }
+    return console.error("Err: not group member");
+  }
+  //boolean if arg is in group
+  has(val) {
+    return false;
+  }
+  //takes iterable object and creates a group with all the values
+  static from(obj) {
+    return new Object(obj);
+  }
+  //iterates head pointer through members list
+  next() {
+    let headIndex = this.members.indexOf(this.head);
+    if (this.members[headIndex + 1]) {
+      this.head = this.members[headIndex + 1]; //increment and return if not end of list
+      return this.head;
+    }
+    return false; //end of list
+  }
+  //overwrite
+  hasOwnProperty() {
+    return 42;
+  }
+  //call original hasOwnProperty
+  newProp(prop) {
+    return super.hasOwnProperty(prop);
+  }
+}
+
+let group = new Group("a", "b", "c");
+// group.add(122);
+// group.delete(8);
+// console.log(Group.from([1, 2, 3]));
+// console.log(group.next());
+// console.log(group.next());
+// console.log(group.next());
+
+// console.log(group.hasOwnProperty("members")); //42
+// console.log(group.newProp("members"));
