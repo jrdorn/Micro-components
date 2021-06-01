@@ -21,9 +21,9 @@
 (abc|def) matches abc or def
 
 methods:
-match, matches against reg exp
-search, searches for and returns starting position of match
-replace, replace matches of a pattern with replacement string or function
+String.match, matches against reg exp
+String.search, searches for and returns starting position of match
+String.replace, replace matches of a pattern with replacement string or function
 
 options:
 i, match case insensitive
@@ -212,3 +212,78 @@ function parseINI(string) {
 // [address]
 // city=Tessaloniki`)
 // );
+
+//Exercises
+
+//RegExp Golf
+let regexpGolf;
+
+// 1.
+// console.log("car".match(/ca\w/));
+// console.log("cat".match(/ca\w/));
+
+// 2.
+// console.log("pop".match(/p\w?op/));
+// console.log("prop".match(/p\w?op/));
+
+// 3.
+// console.log("ferret".match(/fer\w+/));
+// console.log("ferry".match(/fer\w+/));
+// console.log("ferrari".match(/fer\w+/));
+
+// 4. Any word ending in ious
+// console.log("spacious".match(/\w+ious/));
+// console.log("contentious".match(/\w+ious/));
+
+// 5. A whitespace character followed by a period, comma, colon, or semicolon
+// console.log(" .".match(/\s[.,;:]/));
+// console.log(" ,".match(/\s[.,;:]/));
+// console.log(" :".match(/\s[.,;:]/));
+// console.log(" ;".match(/\s[.,;:]/));
+
+// 6. A word longer than six letters
+// console.log("abcdef".match(/\w{7}/));
+// console.log("abcdefabcdef".match(/\w{7}/));
+
+// 7. A word without the letter e (or E)
+// console.log("pep".match(/^[^eE]+$/));
+// console.log("pEp".match(/^[^eE]+$/));
+// console.log("pop".match(/^[^eE]+$/));
+
+//Quoting Style
+
+let myStory =
+  "Once upon a time, there wasn't a kingdom. There wasn't anything at all, in fact. Only the howling void reverberating endlessly throughout the cold universe. 'Is anyone there?' you cried. But the only reply was your own voice, softly fading to nothingness.";
+
+function replaceQuotes(quote) {
+  //don't replace if there are chars immediately before and after apostrophe
+  quote = quote.replace(/\s'/g, ' "');
+  quote = quote.replace(/'\s/g, '" ');
+  return quote;
+}
+// console.log(replaceQuotes(myStory));
+
+//Numbers Again
+
+let number = /(^[+\-]?(\d+(\.\d*)?|\.\d+)([eE][+\-]?\d+)?$)/;
+
+for (let str of [
+  "1",
+  "-1",
+  "+15",
+  "1.55",
+  ".5",
+  "5.",
+  "1.3e2",
+  "1E-4",
+  "1e+12",
+]) {
+  if (!number.test(str)) {
+    console.log(`Failed to match '${str}'`);
+  }
+}
+for (let str of ["1a", "+-1", "1.2.3", "1+1", "1e4.5", ".5.", "1f5", "."]) {
+  if (number.test(str)) {
+    console.log(`Incorrectly accepted '${str}`);
+  }
+}
