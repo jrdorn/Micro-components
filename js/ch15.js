@@ -167,13 +167,85 @@
 //   timeout = setTimeout(() => console.log("typed"), 500);
 // });
 
-let scheduled = null;
-window.addEventListener("mousemove", (event) => {
-  if (!scheduled) {
-    setTimeout(() => {
-      document.body.textContent = `Mouse at ${scheduled.pageX}, ${scheduled.pageY}`;
-      scheduled = null;
-    }, 250);
+// let scheduled = null;
+// window.addEventListener("mousemove", (event) => {
+//   if (!scheduled) {
+//     setTimeout(() => {
+//       document.body.textContent = `Mouse at ${scheduled.pageX}, ${scheduled.pageY}`;
+//       scheduled = null;
+//     }, 250);
+//   }
+//   scheduled = event;
+// });
+
+//Exercises
+
+//Balloon
+
+// let balloon = document.getElementById("balloon");
+
+// window.addEventListener("keydown", handleBalloon);
+// function handleBalloon(event) {
+//   //grow balloon
+//   if (event.key == "ArrowUp") {
+//     let upNum = balloon.style.fontSize; //get font size from balloon
+//     upNum = Number(upNum.replace(/em/g, "")); //remove unit and convert number from string
+//     upNum += upNum * 0.1; //increment by 10%
+//     if (upNum > 10) {
+//       //burst balloon
+//       balloon.innerHTML = "💥";
+//       window.removeEventListener("keydown", handleBalloon);
+//     }
+//     balloon.style.fontSize = String(upNum) + "em"; //append unit and update font size
+//     event.preventDefault(); //prevent scrolling
+//     //shrink balloon
+//   } else if (event.key == "ArrowDown") {
+//     let downNum = balloon.style.fontSize; //get font size from balloon
+//     downNum = Number(downNum.replace(/em/g, "")); //remove unit and convert number from string
+//     downNum -= downNum * 0.1; //decrement by 10%
+//     balloon.style.fontSize = String(downNum) + "em"; //append unit and update font size
+//     event.preventDefault(); //prevent scrolling
+//   }
+// }
+
+//Mouse Trail
+
+// let dots = [];
+// for (let i = 0; i < 12; i++) {
+//   let node = document.createElement("div");
+//   node.className = "trail";
+//   document.body.appendChild(node);
+//   dots.push(node);
+// }
+// let currentDot = 0;
+// window.addEventListener("mousemove", (event) => {
+//   let dot = dots[currentDot];
+//   dot.style.left = event.pageX - 3 + "px";
+//   dot.style.top = event.pageY - 3 + "px";
+//   currentDot = (currentDot + 1) % dots.length;
+// });
+
+//Tabs
+
+function asTabs(node) {
+  let tabs = Array.from(node.children).map((node) => {
+    let button = document.createElement("button");
+    button.textContent = node.getAttribute("data-tabname");
+    let tab = { node, button };
+    button.addEventListener("click", () => selectTab(tab));
+    return tab;
+  });
+  let tabList = document.createElement("div");
+  for (let { button } of tabs) tabList.appendChild(button);
+  node.insertBefore(tabList, node.firstChild);
+
+  function selectTab(selectedTab) {
+    for (let tab of tabs) {
+      let selected = tabs == selectedTab;
+      tab.node.style.display = selected ? "" : "none";
+      tab.button.style.color = selected ? "red" : "";
+    }
   }
-  scheduled = event;
-});
+  selectTab(tabs[0]);
+}
+asTabs(document.querySelector("tab-panel"));
