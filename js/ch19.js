@@ -61,15 +61,31 @@ class PictureCanvas {
   }
 }
 
-function drawPicture(picture, canvas, scale) {
-  canvas.width = picture.width * scale;
-  canvas.height = picture.height * scale;
-  let cx = canvas.getContext("2d");
+PictureCanvas.prototype.syncState = function (picture) {
+  if (this.picture == picture) return;
+  drawPicture(picture, this.dom, scale, this.picture);
+  this.picture = picture;
+};
 
+function drawPicture(picture, canvas, scale, previous) {
+  if (
+    previous == null ||
+    previous.width != picture.width ||
+    previous.height != picture.height
+  ) {
+    canvas.width = picture.width * scale;
+    canvas.height = picture.height * scale;
+    previous = null;
+  }
+
+  let cx = canvas.getContext("2d");
   for (let y = 0; y < picture.height; y++) {
     for (let x = 0; x < picture.width; x++) {
-      cx.fillStyle = picture.pixel(x, y);
-      cx.fillRect(x * scale, y * scale, scale, scale);
+      let color = picture.pixel(x, y);
+      if (previous == null || previous.pixel(x, y) != color) {
+        cx.fillStyle = color;
+        cx.fillRect(x * scale, y * scale, scale, scale);
+      }
     }
   }
 }
@@ -139,6 +155,20 @@ class PixelEditor {
       elt("br"),
       ...this.controls.reduce((a, c) => a.concat(" ", c.dom), [])
     );
+  }
+  keyDown(event, config) {
+    if (event.key == "z" && (event.ctrlKey || event.metaKey)) {
+      event.preventDefault();
+      config.dispatch({ undo: true });
+    } else if (!event.ctrlKey && !event.metaKey && !event.altKey) {
+      for (let tool of Object.keys(config.tools)) {
+        if (tool[0] == event.key) {
+          event.preventDefault();
+          config.dispatch({ tool });
+          return;
+        }
+      }
+    }
   }
   syncState(state) {
     this.state = state;
@@ -239,6 +269,65 @@ function fill({ x, y }, state, dispatch) {
 
 function pick(pos, state, dispatch) {
   dispatch({ color: state.picture.pixel(pos.x, pos.y) });
+}
+
+function circle(pos, state, dispatch) {
+  function drawCircle(to) {
+    let radius = Math.sqrt(
+      Math.pow(to.x - pos.x, 2) + Math.pow(to.y - pos.y, 2)
+    );
+    let radiusC = Math.ceil(radius);
+    let drawn = [];
+    for (let dy = -radiusC; dy <= radiusC; dy++) {
+      for (let dx = -radiusC; dx <= radiusC; dx++) {
+        let dist = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
+        if (dist > radius) continue;
+        let y = pos.y + dy,
+          x = pos.x + dx;
+        if (
+          y < 0 ||
+          y >= state.picture.height ||
+          x < 0 ||
+          x >= state.picture.width
+        )
+          continue;
+        drawn.push({ x, y, color: state.color });
+      }
+    }
+    dispatch({ picture: state.picture.draw(drawn) });
+  }
+  drawCircle(pos);
+  return drawCircle;
+}
+
+function drawLine(from, to, color) {
+  let points = [];
+  if (Math.abs(from.x - to.x) > Math.abs(from.y - to.y)) {
+    if (from.x > to.x) [from, to] = [to, from];
+    let slope = (to.y - from.y) / (to.x - from.x);
+    for (let { x, y } = from; x <= to.x; x++) {
+      points.push({ x: Math.round(x), y, color });
+      x += slope;
+    }
+  }
+  return points;
+}
+
+function draw(pos, state, dispatch) {
+  function connect(newPos, state) {
+    let line = drawLine(pos, newPos, state.color);
+    pos = newPos;
+    dispatch({ picture: state.picture.draw(line) });
+  }
+  connect(pos, state);
+  return connect;
+}
+
+function line(pos, state, dispatch) {
+  return (end) => {
+    let line = drawLine(pos, end, state.color);
+    dispatch({ picture: state.picture.draw(line) });
+  };
 }
 
 //Saving and loading
@@ -399,4 +488,8 @@ function startPixelEditor({
   return app.dom;
 }
 
-document.querySelector("div").appendChild(startPixelEditor({}));
+let dom = startPixelEditor({
+  tools: Object.assign({}, baseTools, { circle }, { line }),
+});
+
+document.querySelector("div").appendChild(dom);
