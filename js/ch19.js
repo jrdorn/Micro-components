@@ -307,3 +307,96 @@ function finishLoad(file, dispatch) {
   });
   reader.readAsDataURL(file);
 }
+
+function pictureFromImage(image) {
+  let width = Math.min(100, image.width);
+  let height = Math.min(100, image.height);
+  let canvas = elt("canvas", { width, height });
+  let cx = canvas.getContext("2d");
+  cx.drawImage(image, 0, 0);
+  let pixels = [];
+  let { data } = cx.getImageData(0, 0, width, height);
+
+  function hex(n) {
+    return n.toString(16).padStart(2, "0");
+  }
+  for (let i = 0; i < data.length; i += 4) {
+    let [r, g, b] = data.slice(i, i + 3);
+    pixels.push("#" + hex(r) + hex(g) + hex(b));
+  }
+  return new Picture(width, height, pixels);
+}
+
+//Undo history
+
+function historyUpdateState(state, action) {
+  if (action.undo == true) {
+    if (state.done.length == 0) return state;
+    return Object.assign({}, state, {
+      picture: state.done[0],
+      done: state.done.slice(1),
+      doneAt: 0,
+    });
+  } else if (action.picture && state.doneAt < Date.now() - 1000) {
+    return Object.assign({}, state, action, {
+      done: [state.picture, ...state.done],
+      doneAt: Date.now(),
+    });
+  } else {
+    return Object.assign({}, state, action);
+  }
+}
+
+class UndoButton {
+  constructor(state, { dispatch }) {
+    this.dom = elt(
+      "button",
+      {
+        onclick: () => dispatch({ undo: true }),
+        disabled: state.done.length == 0,
+      },
+      "⬅ Undo"
+    );
+  }
+  syncState(state) {
+    this.dom.disabled = state.done.length == 0;
+  }
+}
+
+//Let's draw
+
+const startState = {
+  tool: "draw",
+  color: "#000000",
+  picture: Picture.empty(60, 30, "#f0f0f0"),
+  done: [],
+  doneAt: 0,
+};
+
+const baseTools = { draw, fill, rectangle, pick };
+
+const baseControls = [
+  ToolSelect,
+  ColorSelect,
+  SaveButton,
+  LoadButton,
+  UndoButton,
+];
+
+function startPixelEditor({
+  state = startState,
+  tools = baseTools,
+  controls = baseControls,
+}) {
+  let app = new PixelEditor(state, {
+    tools,
+    controls,
+    dispatch(action) {
+      state = historyUpdateState(state, action);
+      app.syncState(state);
+    },
+  });
+  return app.dom;
+}
+
+document.querySelector("div").appendChild(startPixelEditor({}));
