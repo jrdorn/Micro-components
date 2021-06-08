@@ -8,7 +8,7 @@ module.exports = class Router {
     this.routes.push({ method, url, handler });
   }
   resolve(context, request) {
-    let path = parse(requst.url).pathname;
+    let path = parse(request.url).pathname;
 
     for (let { method, url, handler } of this.routes) {
       let match = url.exec(path);
