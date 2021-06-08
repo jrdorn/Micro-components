@@ -92,6 +92,7 @@ methods.PUT = async function (request) {
 
 const { mkdir } = require("fs").promises;
 
+//make a collection
 methods.MKCOL = async function (request) {
   let path = urlPath(request.url);
   let stats;
@@ -99,9 +100,10 @@ methods.MKCOL = async function (request) {
     stats = await stat(path);
   } catch (error) {
     if (error.code != "ENOENT") throw error;
-    await mkdir(path);
+    await mkdir(path); //fs make directory
     return { status: 204 };
   }
   if (stats.isDirectory()) return { status: 204 };
+  //no content
   else return { status: 400, body: "Not a directory" };
 };
