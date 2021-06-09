@@ -102,7 +102,7 @@ Classic module: outer function that runs at least once
 
  */
 
-function Publication(title, author, pubDate) {
+function Pubs(title, author, pubDate) {
   var publicAPI = {
     print() {
       console.log(`Title: ${title} By: ${author} ${pubDate}`);
@@ -110,3 +110,9 @@ function Publication(title, author, pubDate) {
   };
   return publicAPI;
 }
+
+/**
+ES modules: wrapping context is a file
+            export to add a variable/method to public API def
+            import it to use its single instance
+ */
