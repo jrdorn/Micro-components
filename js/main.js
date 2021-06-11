@@ -105,14 +105,105 @@ Classic module: outer function that runs at least once
 function Pubs(title, author, pubDate) {
   var publicAPI = {
     print() {
-      console.log(`Title: ${title} By: ${author} ${pubDate}`);
+      console.log(` Title: ${title}\n By: ${author}\n Pub: ${pubDate}`);
     },
   };
   return publicAPI;
 }
+Pubs("Metamorphosis", "Franz Kafka", 1915).print();
 
 /**
 ES modules: wrapping context is a file
             export to add a variable/method to public API def
             import it to use its single instance
  */
+
+//Spread Operator
+
+//array spread
+// let vals = [...val];
+let arr = [1, 2, 3];
+let arrCopy = [...arr]; //shallow copy
+arrCopy[0] += 1;
+console.log(arr, arrCopy);
+
+let greeting = "Merry Christmas!";
+let chars = [...greeting];
+console.log(chars);
+
+//function spread
+function doSomething(...param) {
+  return param;
+}
+
+/**
+Maps use objects as keys
+default iteration is over entries (a tuple [2 elem array] with a key and value)
+ */
+let myMap = new Map();
+myMap.set("b1", "Banana1");
+myMap.set("b2", "Banana2");
+
+//2 elem arrays
+for (let bloop of myMap) {
+  console.log(bloop);
+}
+
+//array destructuring to key-value pairs
+for (let [b, bName] of myMap) {
+  console.log(b, bName);
+}
+
+//just values
+for (let val of myMap.values()) {
+  console.log(val);
+}
+
+//index and value
+let arB = ["a", "b", "c"];
+for (let [index, val] of arB.entries()) {
+  console.log(`[${index}]: ${val}`);
+}
+
+/** JS iterators: .keys(), .values(), .entries() */
+
+/** Closure 
+When a function remembers and continues to access variables from outside its scope
+even when the function is executed in a different scope
+
+-objects don't get closure, functions do
+-to observe a  closure, you must execute a funciton in a different scope 
+  than where it was priginally defined
+*/
+
+function greet(msg) {
+  return function who(name) {
+    console.log(`${msg}, ${name}!`);
+  };
+}
+
+let hello = greet("Hello");
+let howdy = greet("Howdy");
+
+hello("Paul");
+hello("Terry");
+howdy("Seabiscuit");
+
+//closure has a direct link and preservation of variable
+function counter(step = 1) {
+  let count = 0;
+  return function increaseCount() {
+    count += step;
+    console.log(count);
+  };
+}
+
+let incBy1 = counter(1);
+let incBy3 = counter(3);
+
+incBy1();
+incBy1();
+
+incBy3();
+incBy3();
+incBy3();
