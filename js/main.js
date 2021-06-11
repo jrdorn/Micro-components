@@ -244,3 +244,30 @@ console.log(homework.topic);
 homework.topic = "Italian";
 console.log(otherHW.topic);
 console.log(homework.topic);
+
+/** Values vs References */
+let mySandwich = "turkey";
+let yourSandwich = mySandwich; //primitives are held by value
+mySandwich = "jamon";
+console.log(yourSandwich, mySandwich);
+
+let myShake = { milk: "oat", flavor: "strawberry" };
+let yourShake = myShake; //objects are held by reference
+myShake.milk = "soy";
+console.log(yourShake.milk);
+
+/** Prototypal classes */
+
+function Bakery() {}
+Bakery.prototype.welcome = function hello() {
+  console.log("Come get your bread!");
+};
+let lovinOven = new Bakery();
+lovinOven.welcome();
+
+/**
+ All functions reference an empty object at a property called "prototype"
+ this is NOT the function's prototype, but the prototype object "to link to" when 
+   other objects are created by calling "new"
+Disfavored in favor of ES6 Class mechanism
+ */
