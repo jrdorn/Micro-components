@@ -271,3 +271,95 @@ lovinOven.welcome();
    other objects are created by calling "new"
 Disfavored in favor of ES6 Class mechanism
  */
+
+/** APPENDIX B */
+
+/** Practicing Comparisons */
+
+const dayStart = "07:30";
+const dayEnd = "17:45";
+
+//return true if meeting falls entirely within the work day, false otherwise
+function scheduleMeeting(startTime, durMins) {
+  //convert work day start from strings to integers
+  let dsHour = Number(dayStart.slice(0, 2));
+  let dsMin = Number(dayStart.slice(3));
+
+  //convert work day end from strings to integers
+  let deHour = Number(dayEnd.slice(0, 2));
+  let deMin = Number(dayEnd.slice(3));
+
+  //convert meeting start time to integers
+  let sIndex = startTime.indexOf(":");
+  let startHour = Number(startTime.slice(0, sIndex));
+  let startMin = Number(startTime.slice(sIndex + 1));
+
+  //convert meeting end time to integers
+  let endHour = startHour;
+  let endMin = startMin + durMins;
+  if (endMin > 59) {
+    endHour += 1;
+    endMin -= 60;
+  }
+
+  //return true if meeting falls within work day boundaries, and false if otherwise
+  if (
+    ((startHour === dsHour && startMin >= dsMin) || startHour > dsHour) &&
+    ((endHour === deHour && endMin <= deMin) || endHour < deHour)
+  ) {
+    console.log(startTime, true);
+    return;
+  }
+
+  console.log(startTime, false);
+}
+
+scheduleMeeting("7:00", 15); // false
+scheduleMeeting("07:15", 30); // false
+scheduleMeeting("7:30", 30); // true
+scheduleMeeting("11:30", 60); // true
+scheduleMeeting("17:00", 45); // true
+scheduleMeeting("17:30", 30); // false
+scheduleMeeting("18:00", 15); // false
+
+/** Practicing Closure */
+
+function rangePrototype(start, end) {
+  let myRange = [];
+  //no range if end is less than start
+  if (end < start) {
+    console.log(myRange);
+    return;
+  }
+
+  //push ints to array and increment until range end
+  let count = start;
+  while (count < end + 1) {
+    myRange.push(count);
+    count++;
+  }
+  console.log(myRange);
+  return;
+}
+
+function range(start, end) {
+  if (end === undefined) {
+    return function needsEnd(end2) {
+      return rangePrototype(start, end2);
+    };
+  }
+  return rangePrototype(start, end);
+}
+
+range(3, 3); // [3]
+range(3, 8); // [3,4,5,6,7,8]
+range(3, 0); // []
+
+let start3 = range(3);
+let start4 = range(4);
+
+start3(3); // [3]
+start3(8); // [3,4,5,6,7,8]
+start3(0); // []
+
+start4(6); // [4,5,6]
