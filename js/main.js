@@ -207,3 +207,40 @@ incBy1();
 incBy3();
 incBy3();
 incBy3();
+
+//Scope is the set of rules controlling how references to variables are resolved
+//execution context -> this keyword
+
+function classroom(teacher) {
+  return function study() {
+    console.log(`${teacher} says to study ${this.topic}`);
+  };
+}
+// var topic = "French"; //default to global object
+let assignment = classroom("Paul");
+
+let homework = {
+  topic: "JS", //this inside homework object
+  assignment: assignment,
+};
+homework.assignment();
+
+let otherHW = { topic: "Math" };
+assignment.call(otherHW); //call method with given this value
+
+// Prototypes
+//char of object and resolution of a property access
+
+console.log(homework.toString()); //valid even though homework doesn't have a toString() method defined
+
+//Object linkage
+let oHW = Object.create(homework);
+console.log(oHW.topic); //prototype chain: otherHW -> homework -> Object.prototype
+
+//delegation
+otherHW.topic = "French";
+console.log(otherHW.topic);
+console.log(homework.topic);
+homework.topic = "Italian";
+console.log(otherHW.topic);
+console.log(homework.topic);
