@@ -3,3 +3,29 @@ body {
   font-family: "Courier New", Courier, monospace;
   color: cornsilk;
 }
+
+/* Slot Machine */
+#rows {
+  margin-left: 17em;
+  margin-top: 7em;
+  max-width: 9.2em;
+  padding: 1em;
+  border: 2px solid black;
+  background-color: #f7f7f7;
+  color: red;
+}
+#rows > * {
+  font-size: 3em;
+}
+
+#spinButton {
+  font-size: inherit;
+  color: white;
+  letter-spacing: 0.2em;
+  border: none;
+  border-radius: 5px;
+  background-color: red;
+  padding: 0.5em;
+  margin-top: 1em;
+  margin-left: 17.7em;
+}

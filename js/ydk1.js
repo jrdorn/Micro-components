@@ -326,20 +326,12 @@ scheduleMeeting("18:00", 15); // false
 
 function rangePrototype(start, end) {
   let myRange = [];
-  //no range if end is less than start
-  if (end < start) {
-    console.log(myRange);
-    return;
-  }
 
-  //push ints to array and increment until range end
-  let count = start;
-  while (count < end + 1) {
+  //push ints to array and increment until range end; no range if end is less than start
+  for (let count = start; count < end + 1; count++) {
     myRange.push(count);
-    count++;
   }
-  console.log(myRange);
-  return;
+  return console.log(myRange);
 }
 
 function range(start, end) {
@@ -363,3 +355,80 @@ start3(8); // [3,4,5,6,7,8]
 start3(0); // []
 
 start4(6); // [4,5,6]
+
+/** Practicing Prototypes */
+
+//random index that is less than or equal to max
+function randMax(max) {
+  return Math.trunc(1e9 * Math.random()) % max;
+}
+
+let reel = {
+  symbols: ["♠", "♥", "♦", "♣", "☺", "★", "☾", "☀"],
+  spin() {
+    if (this.position === null) {
+      this.position = randMax(this.symbols.length - 1);
+    }
+    this.position = (this.position + 100 + randMax(100)) % this.symbols.length;
+  },
+  display() {
+    if (this.position === null) {
+      this.position = randMax(this.symbols.length - 1);
+    }
+    return this.symbols[this.position];
+  },
+};
+
+let slotMachine = {
+  reels: [
+    (leftReel = Object.create(reel, {
+      position: {
+        value: null,
+        writable: true,
+      },
+    })),
+    (midReel = Object.create(reel, {
+      position: {
+        value: null,
+        writable: true,
+      },
+    })),
+    (rightReel = Object.create(reel, {
+      position: {
+        value: null,
+        writable: true,
+      },
+    })),
+  ],
+  spin() {
+    this.reels.forEach(function spinReel(reel) {
+      reel.spin();
+    });
+  },
+  display() {
+    console.log(
+      `
+      ${reel.symbols[(leftReel.position - 1 + 7) % 7]} ${
+        reel.symbols[(midReel.position - 1 + 7) % 7]
+      } ${reel.symbols[(rightReel.position - 1 + 7) % 7]}
+      ${reel.symbols[(leftReel.position + 7) % 7]} ${
+        reel.symbols[(midReel.position + 7) % 7]
+      } ${reel.symbols[(rightReel.position + 7) % 7]}
+      ${reel.symbols[(leftReel.position + 1 + 7) % 7]} ${
+        reel.symbols[(midReel.position + 1 + 7) % 7]
+      } ${reel.symbols[(rightReel.position + 1 + 7) % 7]}
+      `
+    );
+
+    /**
+     Use the % modulo operator for wrapping position as you 
+     access symbols circularly around a reel.
+     */
+  },
+};
+
+slotMachine.spin();
+slotMachine.display();
+
+slotMachine.spin();
+slotMachine.display();

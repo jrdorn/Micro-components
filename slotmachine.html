@@ -2,7 +2,7 @@
 <html lang="en-US">
   <head>
     <meta charset="utf-8" />
-    <title>JS Projects</title>
+    <title>Slot Machine</title>
     <link rel="stylesheet" type="text/css" href="css/style.css" />
   </head>
   <body>
@@ -10,12 +10,19 @@
     <header><h3>You Don't Know JS (Yet)</h3></header>
 
     <!-- Our page's main content -->
-    <main></main>
+    <main>
+      <div id="rows">
+        <div id="row1"></div>
+        <div id="row2"></div>
+        <div id="row3"></div>
+      </div>
+      <button id="spinButton" onclick="spinIt()">TAP TO SPIN!</button>
+    </main>
 
     <footer></footer>
 
     <!-- Scripts -->
     <!-- <script type="module" src="js/import.js"></script> -->
-    <script src="js/ydk2.js"></script>
+    <script src="js/slotmachine.js"></script>
   </body>
 </html>
