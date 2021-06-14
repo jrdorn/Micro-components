@@ -236,3 +236,196 @@ greeting();
 
 dogName = "Rover";
 greeting();
+
+let keeps = [];
+for (var i = 0; i < 3; i++) {
+  keeps[i] = function keepI() {
+    //closure over 'i'
+    return i;
+  };
+}
+console.log(keeps[0](), keeps[1](), keeps[2]());
+
+//Callbacks
+
+function lookupStudentRecord(studentID) {
+  ajax(`https://some.api/student/${studentID}`, function onRecord(record) {
+    console.log(`${record.name} (${studentID})`);
+  });
+}
+// lookupStudentRecord(114);
+
+//Event handlers
+
+function listenForClicks(btn, label) {
+  btn.addEventListener("click", function onClick() {
+    console.log(`The ${label} button was clicked!`);
+  });
+}
+let submitBtn = document.getElementById("submit-btn");
+listenForClicks(submitBtn, "Checkout");
+
+/** Closure is observed when a function uses variables from outer scoped
+ even while running in a scope where those variables wouldn't be accessible
+ */
+
+//Lifecycle and garbage collection
+
+function manageBtnClickEvents(btn) {
+  let clickHandlers = [];
+
+  return function listener(cb) {
+    if (cb) {
+      let clickHandler = function onClick(evt) {
+        console.log("Clicked!");
+        cb(evt);
+      };
+      clickHandlers.push(clickHandler);
+      btn.addEventListener("click", clickHandler);
+    } else {
+      //passing no callback unsibscribes all click handlers
+      for (let handler of clickHandlers) {
+        btn.removeEventListener("click", handler);
+      }
+      clickHandlers = [];
+    }
+  };
+}
+
+// let onSubmit = manageBtnClickEvents(mySubmitBtn);
+
+// onSubmit(function checkout(evt) {
+//   //handle checkout
+// });
+
+// onSubmit(function trackAction(evt) {
+//   //log action to analytics
+// });
+
+// //later, unsubscribe all handlers
+// onSubmit();
+
+/** Closure can prevent GC of a variable you're done with, so
+ * discard function references when they're not needed anymore
+ */
+
+function manageGrades(studentRecords) {
+  let grades = studentRecords.map(getGrade);
+  return addGrade;
+
+  /********************/
+
+  function getGrade(record) {
+    return record.grade;
+  }
+
+  function sortAndTrimGradesList() {
+    //sort by grades, descending
+    grades.sort(function desc(g1, g2) {
+      return g2 - g1;
+    });
+
+    //only keep the top 10 grades
+    grades = grades.slice(0, 10);
+  }
+
+  function addGrade(newGrade) {
+    grades.push(newGrade);
+    sortAndTrimGradesList();
+    return grades;
+  }
+}
+
+let addNextGrade = manageGrades([
+  { id: 14, name: "Kyle", grade: 86 },
+  { id: 73, name: "Suzy", grade: 87 },
+  { id: 112, name: "Frank", grade: 75 },
+  { id: 6, name: "Sarah", grade: 91 },
+]);
+
+addNextGrade(81);
+addNextGrade(68);
+
+/** Namespace (group of state-independent functions) not a module */
+let Utils = {
+  cancelEvt(evt) {
+    evt.preventDefault();
+    evt.stopPropagation();
+    evt.stopImmediatePropagation();
+  },
+  wait(ms) {
+    return new Promise(function c(res) {
+      setTimeout(res, ms);
+    });
+  },
+  isValidEmail(email) {
+    return /[^@]+@[^@.]+\.[^@.]+/.test(email);
+  },
+};
+
+/** Data structure (data and stateful functions without limited visibility) not a module */
+let rStudent = {
+  records: [
+    { id: 14, name: "Kyle", grade: 86 },
+    { id: 73, name: "Suzy", grade: 87 },
+    { id: 112, name: "Frank", grade: 75 },
+    { id: 6, name: "Sarah", grade: 91 },
+  ],
+  getName(studentID) {
+    let student = this.records.find((student) => student.id === studentID);
+    return student.name;
+  },
+};
+console.log(rStudent.getName(73));
+
+/** data and functionality, visibility control (principle of least exposure) */
+
+let modStudent = (function defineStudent() {
+  let records = [
+    { id: 14, name: "Sam", grade: 86 },
+    { id: 73, name: "Julia", grade: 87 },
+    { id: 112, name: "Jordan", grade: 88 },
+    { id: 6, name: "Coleman", grade: 89 },
+  ];
+  let publicAPI = {
+    getName,
+  };
+  return publicAPI;
+  /*************************/
+  function getName(studentID) {
+    let student = records.find((student) => student.id === studentID);
+    return student.name;
+  }
+})(); //IIFE implies program only needs one central instance of the module, a 'singleton'
+console.log(modStudent.getName(6));
+
+//Module factory
+function factoryStudent() {
+  let records = [
+    { id: 14, name: "Kyle", grade: 86 },
+    { id: 73, name: "Suzy", grade: 87 },
+    { id: 112, name: "Frank", grade: 75 },
+    { id: 6, name: "Sarah", grade: 91 },
+  ];
+  let publicAPI = {
+    getName,
+  };
+  return publicAPI;
+  /*************************/
+  function getName(studentID) {
+    let student = records.find((student) => student.id === studentID);
+    return student.name;
+  }
+}
+let fullTime = factoryStudent();
+console.log(fullTime.getName(14));
+
+/** Modules must
+ * have an outer scope, typically a module factory function
+ * inner scope must have hidden data representing state
+ * must return on its public API a reference to at least one 
+    function with closure over the hidden state so that
+    this state is preserved
+ */
+
+//
