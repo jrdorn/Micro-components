@@ -428,4 +428,8 @@ console.log(fullTime.getName(14));
     this state is preserved
  */
 
-//
+/**
+Classic modules: browser, Node
+CommonJS: Node
+ESM: browser, Node
+*/
