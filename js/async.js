@@ -1,14 +1,28 @@
-const btn = document.querySelector("button");
-btn.addEventListener("click", () => {
-  let myDate;
-  for (let i = 0; i < 10000000; i++) {
-    let date = new Date();
-    myDate = date;
-  }
+const cat = "img/cat.png";
 
-  console.log(myDate);
+function loadAsset(url, type, callback) {
+  let xhr = new XMLHttpRequest();
+  xhr.open("GET", url);
+  xhr.responseType = type;
 
-  let pElem = document.createElement("p");
-  pElem.textContent = "This is a newly-added paragraph.";
-  document.body.appendChild(pElem);
-});
+  xhr.onload = function () {
+    callback(xhr.response);
+  };
+
+  xhr.send();
+}
+
+function displayImage(blob) {
+  let objectURL = URL.createObjectURL(blob);
+
+  let image = document.createElement("img");
+  image.src = objectURL;
+  document.body.appendChild(image);
+}
+
+//console.log(Location.hostname);
+//Access-Control-Allow-Origin: *
+//Document.location
+//Window.location
+
+loadAsset(cat, "blob", displayImage);
