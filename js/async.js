@@ -13,16 +13,19 @@ function loadAsset(url, type, callback) {
 }
 
 function displayText(text) {
-  let objectURL = URL.createObjectURL(text);
-
   let para = document.createElement("p");
-  para.innerHTML = objectURL;
+  para.innerHTML = text;
   document.body.appendChild(para);
 }
 
-// console.log(Location.hostname);
-// console.log(Document.location);
-// console.log(Window.location);
-//Access-Control-Allow-Origin: *
+function displayImage(blob) {
+  let objectURL = URL.createObjectURL(blob);
 
-loadAsset("http://127.0.0.1:3000/", "text/plain", displayText);
+  //   console.log(objectURL);
+  let image = document.createElement("img");
+  image.src = objectURL;
+  document.body.appendChild(image);
+}
+
+// loadAsset("http://127.0.0.1:3000/", "text/plain", displayText);
+loadAsset("http://127.0.0.1:3000/", "blob", displayImage);
