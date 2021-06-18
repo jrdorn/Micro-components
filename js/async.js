@@ -68,15 +68,26 @@ fruit.myMethod = function (prop) {
 fruitTime = fruit.myMethod(0);
 fruitInter = fruit.myMethod(1);
 
-setTimeout(fruitTime, 1000); //kiwi
+//Print kiwi once after 1 second
+// setTimeout(fruitTime, 1000);
 
-let count = 0;
-let timer = setInterval(function () {
-  count++;
-  if (count > 2) clearInterval(timer);
-  fruitInter();
-}, 1000);
+//IIFE, print kiwi every 1.5 seconds until count reaches 3
+// let count = 0;
+// let timer = setInterval(function () {
+//   count++;
+//   if (count > 2) clearInterval(timer);
+//   fruitInter();
+// }, 1500);
 
-// setTimeout(fruit.myMethod, 1000, 0); //kiwi
+function sayHi(who) {
+  console.log(`Hello ${who}!`);
+}
+// let myGreeting = setTimeout(sayHi, 2000, "world");
 
-// setInterval(fruit.myMethod, 1500, 1); //mango
+//clock
+function displayTime() {
+  let date = new Date();
+  let time = date.toLocaleTimeString();
+  document.getElementById("demo").textContent = time;
+}
+// const createClock = setInterval(displayTime, 1000);
