@@ -1,4 +1,4 @@
-const cat = "img/cat.png";
+// const cat = "img/cat.png";
 
 function loadAsset(url, type, callback) {
   let xhr = new XMLHttpRequest();
@@ -12,17 +12,17 @@ function loadAsset(url, type, callback) {
   xhr.send();
 }
 
-function displayImage(blob) {
-  let objectURL = URL.createObjectURL(blob);
+function displayText(text) {
+  let objectURL = URL.createObjectURL(text);
 
-  let image = document.createElement("img");
-  image.src = objectURL;
-  document.body.appendChild(image);
+  let para = document.createElement("p");
+  para.innerHTML = objectURL;
+  document.body.appendChild(para);
 }
 
-//console.log(Location.hostname);
+// console.log(Location.hostname);
+// console.log(Document.location);
+// console.log(Window.location);
 //Access-Control-Allow-Origin: *
-//Document.location
-//Window.location
 
-loadAsset(cat, "blob", displayImage);
+loadAsset("http://127.0.0.1:3000/", "text/plain", displayText);

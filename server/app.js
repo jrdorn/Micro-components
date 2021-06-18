@@ -1,4 +1,8 @@
-// Access-Control-Allow-Origin: *
+const cors = require("cors");
+const express = require("express");
+const app = express();
+app.use(cors());
+app.options("*", cors());
 
 const http = require("http");
 
