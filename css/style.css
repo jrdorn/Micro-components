@@ -35,3 +35,18 @@ body {
 canvas {
   border: 1px solid rgb(0, 0, 255);
 }
+
+#spinner {
+  font-size: 3rem;
+}
+
+#spinWrap {
+  height: 1em;
+  width: 1em;
+}
+
+#pos {
+  margin-top: 10em;
+  display: flex;
+  justify-content: center;
+}

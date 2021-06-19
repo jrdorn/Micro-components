@@ -91,3 +91,52 @@ function displayTime() {
   document.getElementById("demo").textContent = time;
 }
 // const createClock = setInterval(displayTime, 1000);
+
+// Recursive timeouts
+
+let q = 1;
+if (q > 1) {
+  setTimeout(function run() {
+    console.log(q);
+    q++;
+    setTimeout(run, 100);
+  }, 100);
+}
+
+//Immediate timeouts
+
+setTimeout(function () {
+  console.log("World");
+}, 0);
+console.log("Hello");
+/**
+ * useful when you want to run a block of code immediately
+ * after the main thread finishes running
+ */
+
+/** requestAnimationFrame() */
+
+const spinner = document.getElementById("spinner");
+let rotateCount = 0;
+let startTime = null;
+let rAF;
+
+function draw(timestamp) {
+  if (!startTime) {
+    startTime = timestamp;
+  }
+
+  rotateCount = (timestamp - startTime) / 3;
+  if (rotateCount > 359) {
+    rotateCount %= 360;
+  }
+  spinner.style.transform = `rotate(${rotateCount}deg)`;
+
+  //call next frame in the animation
+  rAF = requestAnimationFrame(draw);
+}
+draw();
+
+//pause on click
+
+// cancelAnimationFrame(rAF);
