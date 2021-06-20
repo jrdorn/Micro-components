@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.static(__dirname));
 
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/products.json");
+  res.sendFile(__dirname + "/kitty.png");
 });
 
 app.listen(port, () => {
