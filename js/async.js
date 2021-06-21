@@ -59,7 +59,7 @@ fruit.myMethod = function (prop) {
   let nums = 1;
   //closure
   return function () {
-    //template literal with ternary conditional displaying fruit as plural if num is greater than 1
+    //make fruit plural if count is greater than 1
     console.log(`${nums} ${nums > 1 ? fruit[prop] + "s" : fruit[prop]}`);
     nums++;
   };
