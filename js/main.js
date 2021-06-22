@@ -1,34 +1,50 @@
-(function () {
-  let httpRequest;
-  document
-    .getElementById("ajaxButton")
-    .addEventListener("click", makeRequest());
+//create an AudioContext (cross browser)
+const AudioContext = window.AudioContext || window.webkitAudioContext;
+const audioCtx = new AudioContext();
 
-  function makeRequest() {
-    httpRequest = new XMLHttpRequest();
+//store references to HTML elements
+const audioElement = document.querySelector("audio");
+const playBtn = document.querySelector("button");
+const volumeSlider = document.querySelector(".volume");
 
-    if (!httpRequest) {
-      alert("Giving up: cannot create XMLHTTP instance");
-      return false;
-    }
-    httpRequest.onreadystatechange = alertContents;
-    httpRequest.open("GET", "http://localhost:3000/test.xml");
-    httpRequest.send();
+//load the audio source into our audio graph
+const audioSource = audioCtx.createMediaElementSource(audioElement);
+
+//play-pause audio
+playBtn.addEventListener("click", function () {
+  //check if context is in suspended state (autoplay policy)
+  if (audioCtx.state === "suspended") {
+    audioCtx.resume();
   }
 
-  function alertContents() {
-    try {
-      if (httpRequest.readyState === XMLHttpRequest.DONE) {
-        if (httpRequest.status === 200) {
-          let xmldoc = httpRequest.responseXML;
-          let root_node = xmldoc.getElementsByTagName("root").item(0);
-          alert(root_node.firstChild.data);
-        } else {
-          alert("Something went wrong with the request");
-        }
-      }
-    } catch (e) {
-      alert(`Caught exception: ${e.description}`);
-    }
+  //if track is stopped, play it
+  if (this.getAttribute("class") === "paused") {
+    audioElement.play();
+    this.setAttribute("class", "playing");
+    this.textContent = "Pause";
+
+    //if track is playing, stop it
+  } else if (this.getAttribute("class") === "playing") {
+    audioElement.pause();
+    this.setAttribute("class", "paused");
+    this.textContent = "Play";
   }
-})();
+});
+
+//if track ends
+audioElement.addEventListener("ended", function () {
+  playBtn.setAttribute("class", "paused");
+  playBtn.textContent = "Play";
+});
+
+//volume
+const gainNode = audioCtx.createGain();
+
+volumeSlider.addEventListener("input", function () {
+  gainNode.gain.value = this.value;
+});
+
+//connect our graph
+audioSource.connect(gainNode).connect(audioCtx.destination);
+
+// Track credit: Outfoxing the Fox by Kevin MacLeod under Creative Commons
