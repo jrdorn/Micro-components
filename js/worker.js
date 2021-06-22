@@ -1,5 +1,5 @@
 onmessage = function (e) {
-  console.log("WOrker: message received from main");
+  console.log("Worker: message received from main");
   const result = e.data[0] * e.data[1];
   if (isNaN(result)) {
     postMessage("Please write two numbers");
