@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Example</title>
+  </head>
+  <body>
+    <h1>Example</h1>
+
+    <ul>
+      <li>
+        <a
+          id="firstLink"
+          href="javascript:myTask.sendQuery('getDifference', 5, 3);"
+          >Difference between 5 and 3</a
+        >
+      </li>
+      <li>
+        <a href="javascript:myTask.sendQuery('waitSomeTime');"
+          >Wait 3 seconds</a
+        >
+      </li>
+      <li>
+        <a href="javascript.myTask.terminate();">terminate() the Worker</a>
+      </li>
+    </ul>
+
+    <script src="main.js"></script>
+  </body>
+</html>
