@@ -1,11 +1,10 @@
-let L;
+var L;
 window.onload = function () {
-  L.mapquest.key = "API";
+  L.mapquest.key = "PcPyGzJOMGYorjNK0SyHqo6RtY4EGvtQ";
 
-  //div element with ID map
-  let map = L.mapquest.map("map", {
+  L.mapquest.map("map", {
     center: [53.480759, -2.242631],
-    layers: L.mapquest.tileLayer("map"),
+    layers: L.mapquest.tileLayer("satellite"),
     zoom: 12,
   });
 };
