@@ -1,7 +1,7 @@
 body {
-  background-color: grey;
+  background-color: #1e1e1e;
   font-family: "Courier New", Courier, monospace;
-  color: cornsilk;
+  color: #599cd8;
 }
 
 /* Slot Machine */
@@ -42,4 +42,9 @@ body {
   height: 100px;
   background-image: url("../img/bgtile.png");
   border: 10px solid white;
+}
+
+#g2 {
+  margin: 0;
+  overflow: hidden;
 }
