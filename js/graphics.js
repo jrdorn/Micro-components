@@ -1,38 +1,39 @@
-const canvas = document.querySelector("canvas");
+const canvas = document.querySelector(".myCanvas");
 const width = (canvas.width = window.innerWidth);
 const height = (canvas.height = window.innerHeight);
-
 const ctx = canvas.getContext("2d");
 
-//black background
 ctx.fillStyle = "rgb(0,0,0)";
 ctx.fillRect(0, 0, width, height);
 
-//degrees to radians
-function degToRad(degrees) {
-  return (degrees * Math.PI) / 180;
+ctx.translate(width / 2, height / 2);
+
+let image = new Image();
+image.src = "walk-right.png";
+image.onload = draw;
+
+let sprite = 0;
+let posX = 0;
+
+function draw() {
+  ctx.fillRect(-(width / 2), -(height / 2), width, height);
+  ctx.drawImage(image, sprite * 102, 0, 102, 148, 0 + posX, -74, 102, 148);
+
+  if (posX % 13 === 0) {
+    if (sprite === 5) {
+      sprite = 0;
+    } else {
+      sprite++;
+    }
+  }
+
+  if (posX > width / 2) {
+    newStartPos = -(width / 2 + 102);
+    posX = Math.ceil(newStartPos);
+    console.log(posX);
+  } else {
+    posX += 2;
+  }
+
+  window.requestAnimationFrame(draw);
 }
-
-//triangle
-ctx.fillStyle = "rgb(255,0,0)";
-ctx.beginPath();
-ctx.moveTo(50, 50);
-
-ctx.lineTo(150, 50);
-let triHeight = 50 * Math.tan(degToRad(60));
-ctx.lineTo(100, 50 + triHeight);
-ctx.lineTo(50, 50);
-ctx.fill();
-
-//circle
-ctx.fillStyle = "rgb(0,0,255)";
-ctx.beginPath();
-ctx.arc(200, 100, 50, degToRad(0), degToRad(360), false); //x, y, radius, start and end angles, counterclockwise
-ctx.fill();
-
-//pacman
-ctx.fillStyle = "yellow";
-ctx.beginPath();
-ctx.arc(200, 106, 50, degToRad(-45), degToRad(45), true);
-ctx.lineTo(200, 106);
-ctx.fill();
