@@ -37,11 +37,6 @@ loader.load("http://localhost:3000/shrek.png", function (texture) {
 let light = new THREE.AmbientLight("rgb(255,255,255)");
 scene.add(light);
 
-// let spotLight = new THREE.SpotLight("rgb(255,255,255)");
-// spotLight.position.set(100, 1000, 1000);
-// spotLight.castShadow = true;
-// scene.add(spotLight);
-
 function draw() {
   cube.rotation.x += 0.01;
   cube.rotation.y += 0.01;
