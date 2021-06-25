@@ -16,11 +16,15 @@ let intervalRwd;
 media.removeAttribute("controls");
 controls.style.visibility = "visible";
 
-function playPauseMedia() {
+function removeAndClear() {
   rwd.classList.remove("active");
   fwd.classList.remove("active");
   clearInterval(intervalRwd);
   clearInterval(intervalFwd);
+}
+
+function playPauseMedia() {
+  removeAndClear();
 
   if (media.paused) {
     play.setAttribute("data-icon", "u");
@@ -35,10 +39,7 @@ function stopMedia() {
   media.pause();
   media.currentTime = 0;
 
-  rwd.classList.remove("active");
-  fwd.classList.remove("active");
-  clearInterval(intervalRwd);
-  clearInterval(intervalFwd);
+  removeAndClear();
   play.setAttribute("data-icon", "P");
 }
 

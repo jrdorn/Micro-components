@@ -1,0 +1,10 @@
+#myCanvas {
+  position: absolute;
+  top: 5em;
+  left: 7em;
+  background: #eee;
+  display: block;
+  margin: 0 auto;
+  width: 480px;
+  height: 320px;
+}
