@@ -1,7 +1,12 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
 #myCanvas {
-  position: absolute;
+  /* position: absolute;
   top: 5em;
-  left: 7em;
+  left: 7em; */
   background: #eee;
   display: block;
   margin: 0 auto;
