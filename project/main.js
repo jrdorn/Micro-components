@@ -1,7 +1,7 @@
 // grab elements
 const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
-const ballRadius = 10;
+const ballRadius = 7;
 
 let x = canvas.width / 2;
 let y = canvas.height - 30;
