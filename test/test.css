@@ -33,7 +33,7 @@ html {
 
 /* Modal styles */
 
-#modal {
+#modalBtn {
   font-family: inherit;
   background-color: grey;
   color: orange;
@@ -41,4 +41,8 @@ html {
   border-radius: 12px;
   font-size: 1.5rem;
   padding: 0.5em;
+}
+
+.hidden {
+  display: none;
 }

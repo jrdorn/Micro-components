@@ -1,8 +1,14 @@
-const modal = document.querySelector("#modal");
+const modalBtn = document.querySelector("#modalBtn");
+const modalA = document.querySelector("#modalA");
+const modalAClose = document.querySelector("#modalAClose");
 
-modal.addEventListener("click", modalClickHandler, false);
+modalBtn.addEventListener("click", modalClickHandler);
+modalAClose.addEventListener("click", modalCloseHandler);
 
-function modalClickHandler(e) {
-  e.preventDefault();
-  console.log("Modal clicked");
+function modalClickHandler() {
+  modalA.classList.remove("hidden");
+}
+
+function modalCloseHandler() {
+  modalA.classList.add("hidden");
 }
