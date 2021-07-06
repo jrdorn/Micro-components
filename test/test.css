@@ -1,5 +1,44 @@
+/* General setup */
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   background-color: #1e1e1e;
   font-family: "Courier New", Courier, monospace;
   color: #599cd8;
+  display: grid;
+  justify-items: center;
+  font-size: 10px;
+}
+
+/* alternative box model */
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+/* Header */
+
+#header {
+  font-size: 2rem;
+}
+
+/* Modal styles */
+
+#modal {
+  font-family: inherit;
+  background-color: grey;
+  color: orange;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.5rem;
+  padding: 0.5em;
 }
