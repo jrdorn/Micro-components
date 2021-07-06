@@ -1,7 +1,9 @@
-// grab elements
+// grab elements and init variables
 const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
 const ballRadius = 7;
+
+const itemColor = "#6c9950"; //green
 
 let x = canvas.width / 2;
 let y = canvas.height - 30;
@@ -14,7 +16,7 @@ let paddleX = (canvas.width - paddleWidth) / 2;
 
 let rightPressed = false;
 let leftPressed = false;
-let brickRowCount = 5;
+let brickRowCount = 3;
 let brickColumnCount = 3;
 const brickWidth = 75;
 const brickHeight = 20;
@@ -79,7 +81,7 @@ function collisionDetection() {
           b.status = 0;
           score++;
           if (score === brickRowCount * brickColumnCount) {
-            alert("You win!");
+            alert("You Win!");
             document.location.reload();
           }
         }
@@ -91,7 +93,7 @@ function collisionDetection() {
 function drawBall() {
   ctx.beginPath();
   ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
-  ctx.fillStyle = "#0095DD";
+  ctx.fillStyle = itemColor;
   ctx.fill();
   ctx.closePath();
 }
@@ -99,7 +101,7 @@ function drawBall() {
 function drawPaddle() {
   ctx.beginPath();
   ctx.rect(paddleX, canvas.height - paddleHeight, paddleWidth, paddleHeight);
-  ctx.fillStyle = "#0095DD";
+  ctx.fillStyle = itemColor;
   ctx.fill();
   ctx.closePath();
 }
@@ -114,7 +116,7 @@ function drawBricks() {
         bricks[c][r].y = brickY;
         ctx.beginPath();
         ctx.rect(brickX, brickY, brickWidth, brickHeight);
-        ctx.fillStyle = "#0095DD";
+        ctx.fillStyle = itemColor;
         ctx.fill();
         ctx.closePath();
       }
@@ -124,13 +126,13 @@ function drawBricks() {
 
 function drawScore() {
   ctx.font = "16px Arial";
-  ctx.fillStyle = "#0095DD";
+  ctx.fillStyle = itemColor;
   ctx.fillText("Score: " + score, 8, 20);
 }
 
 function drawLives() {
   ctx.font = "16px Arial";
-  ctx.fillStyle = "#0095DD";
+  ctx.fillStyle = itemColor;
   ctx.fillText("Lives: " + lives, canvas.width - 65, 20);
 }
 
