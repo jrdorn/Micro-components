@@ -1,23 +1,27 @@
 // Doc elements
 const modalBtn = document.querySelector("#modalBtn");
 const modalA = document.querySelector("#modalA");
-const modalAClose = document.querySelector(".modalClose");
+const modalClose = document.querySelectorAll(".modalClose");
 const modImg = document.querySelector("#modImg");
 const modImg2 = document.querySelector("#modImg2");
 
 // Event listeners
 modalBtn.addEventListener("click", modalClickHandler);
-modalAClose.addEventListener("click", modalCloseHandler);
+for (let elem of modalClose) {
+  elem.addEventListener("click", modalCloseHandler);
+}
 modImg.addEventListener("click", modImgHandler);
 
 // Functions
 function modalClickHandler() {
   modalA.classList.remove("hidden");
+  modalA.classList.add("vis");
 }
 
-function modalCloseHandler() {
-  modalA.classList.add("hidden");
-  console.log(1);
+function modalCloseHandler(e) {
+  let parent = e.target.closest(".vis");
+  parent.classList.add("hidden");
+  parent.classList.remove("vis");
 }
 
 function modImgHandler() {
