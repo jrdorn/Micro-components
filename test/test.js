@@ -1,35 +1,6 @@
 // Doc elements
-const modalABtn = document.querySelector("#modalABtn");
-const modImgBtn = document.querySelector("#modImgBtn");
-const modalClose = document.querySelectorAll(".modalClose");
-const backdrop = document.querySelector("#backdrop");
 
 // Functions
-
-function outsideModal(e) {
-  //close active modal when user clicks outside it
-  if (e.target.id === "backdrop") {
-    let active = document.querySelector(".vis");
-    active.classList.add("hidden");
-    active.classList.remove("vis");
-    backdrop.classList.add("hidden");
-  }
-}
-
-function modalOpenHandler(e) {
-  let mod = e.target.id.replace("Btn", "");
-  mod = document.querySelector(`#${mod}`);
-  mod.classList.add("vis");
-  mod.classList.remove("hidden");
-  backdrop.classList.remove("hidden");
-}
-
-function modalCloseHandler(e) {
-  let parent = e.target.closest(".vis");
-  parent.classList.add("hidden");
-  parent.classList.remove("vis");
-  backdrop.classList.add("hidden");
-}
 
 function fadeIn(elem) {
   let opacity = 1;
@@ -58,39 +29,36 @@ function fadeOut(elem) {
 }
 
 // Event listeners
-modalABtn.addEventListener("click", modalOpenHandler);
-for (let elem of modalClose) {
-  elem.addEventListener("click", modalCloseHandler);
-}
-modImgBtn.addEventListener("click", modalOpenHandler);
-window.addEventListener("click", outsideModal);
 
-/////////////////
-const openElems = document.querySelectorAll("[data-open]");
+//////////////////////////////////
+const openModals = document.querySelectorAll("[data-open]");
+const closedModals = document.querySelectorAll("[data-close]");
 
-for (const elem of openElems) {
+console.log(openEls);
+console.log(closeEls);
+
+for (const elem of openModals) {
   elem.addEventListener("click", function () {
     const modalId = this.dataset.open;
-    document.getElementById(modalId).classList.add("isVis");
+    document.getElementById(modalId).classList.add("vis");
   });
 }
 
-const closedElems = document.querySelectorAll("[data-close]");
-
-for (const elem of closedElems) {
+for (const elem of closedModals) {
   elem.addEventListener("click", function () {
-    this.parentElement.parentElement.parentElement.classList.remove(isVisible);
+    this.parentElement.parentElement.parentElement.classList.remove("vis");
   });
 }
-//clicking on everything outside modal
+
 document.addEventListener("click", (e) => {
-  if (e.target === document.querySelector(".modal.isVis")) {
-    document.querySelector(".modal.isVis").classList.remove("isVis");
+  if (e.target == document.querySelector(".modal.vis")) {
+    document.querySelector(".modal.vis").classList.remove("vis");
   }
 });
-//pressing Esc key
+
 document.addEventListener("keyup", (e) => {
-  if (e.key === "Escape" && document.querySelector(".modal.isVis")) {
-    document.querySelector(".modal.isVis").classList.remove("isVis");
+  // if we press the ESC
+  if (e.key == "Escape" && document.querySelector(".modal.vis")) {
+    document.querySelector(".modal.vis").classList.remove("vis");
   }
 });

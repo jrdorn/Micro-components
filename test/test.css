@@ -37,77 +37,13 @@ html {
 
 /* || Modal styles */
 
-/* shade page when a modal is active */
-
-#backdrop {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.3);
-  z-index: 2;
-}
-
-.vis {
-  z-index: 3;
-}
-
-/* initial modal */
-
-.modalClose {
-  cursor: pointer;
-  font-family: inherit;
-  font-size: 1.5rem;
-}
-
-#modalABtn {
-  font-family: inherit;
-  font-size: 1.5rem;
-  background-color: grey;
-  color: orange;
-  border: none;
-  border-radius: 12px;
-  padding: 0.5em;
-  cursor: pointer;
-}
-
-#modalA {
-  background-color: navy;
-  font-size: 2rem;
-  position: absolute;
-  margin-top: 5em;
-}
-
-#modalContent {
-  background-color: teal;
-}
-
-/* image */
-
-#modImgBtn {
-  height: 75%;
-  cursor: pointer;
-}
-
-#modImg {
-  position: absolute;
-  margin-top: 5em;
-  background-color: salmon;
-}
-
-/* new style */
-button {
-  cursor: pointer;
-}
-
 .btnGroup {
   text-align: center;
 }
 
 .openModal {
   font-weight: bold;
-  background: blue;
+  background: lightskyblue;
   color: white;
   padding: 0.75rem 1.75rem;
   margin-bottom: 1rem;
@@ -131,7 +67,7 @@ button {
   transition: all 0.35s ease-in;
 }
 
-.modal .isVis {
+.modal.vis {
   visibility: visible;
   opacity: 1;
 }
@@ -141,7 +77,7 @@ button {
   max-width: 800px;
   max-height: 80vh;
   border-radius: 5px;
-  background: var(--white);
+  background: white;
   overflow: auto;
   cursor: default;
 }
@@ -161,8 +97,7 @@ button {
   justify-content: space-between;
 }
 
-.modalHeader,
-.modalClose {
+.modalHeader .closeModal {
   font-size: 1.5rem;
 }
 
