@@ -1,6 +1,8 @@
-// Doc elements
+// || Doc elements
+const openModals = document.querySelectorAll("[data-open]");
+const closedModals = document.querySelectorAll("[data-close]");
 
-// Functions
+// || Functions
 
 function fadeIn(elem) {
   let opacity = 1;
@@ -28,36 +30,32 @@ function fadeOut(elem) {
   }, 10);
 }
 
-// Event listeners
+// || Event listeners
 
-//////////////////////////////////
-const openModals = document.querySelectorAll("[data-open]");
-const closedModals = document.querySelectorAll("[data-close]");
-
-console.log(openEls);
-console.log(closeEls);
-
-for (const elem of openModals) {
-  elem.addEventListener("click", function () {
+//launch modal on click
+for (const mod of openModals) {
+  mod.addEventListener("click", function () {
     const modalId = this.dataset.open;
     document.getElementById(modalId).classList.add("vis");
   });
 }
 
-for (const elem of closedModals) {
-  elem.addEventListener("click", function () {
+//close modal on clicking '×'
+for (const mod of closedModals) {
+  mod.addEventListener("click", function () {
     this.parentElement.parentElement.parentElement.classList.remove("vis");
   });
 }
 
+//close modal on clicking outside
 document.addEventListener("click", (e) => {
   if (e.target == document.querySelector(".modal.vis")) {
     document.querySelector(".modal.vis").classList.remove("vis");
   }
 });
 
+//close modal on pressing 'esc'
 document.addEventListener("keyup", (e) => {
-  // if we press the ESC
   if (e.key == "Escape" && document.querySelector(".modal.vis")) {
     document.querySelector(".modal.vis").classList.remove("vis");
   }

@@ -37,17 +37,17 @@ html {
 
 /* || Modal styles */
 
-.btnGroup {
-  text-align: center;
+button {
+  cursor: pointer;
 }
 
 .openModal {
-  font-weight: bold;
-  background: lightskyblue;
-  color: white;
+  background-color: rgb(128, 128, 128);
+  color: rgb(255, 165, 0);
   padding: 0.75rem 1.75rem;
   margin-bottom: 1rem;
-  border-radius: 5px;
+  border: none;
+  border-radius: 7px;
 }
 
 .modal {
@@ -60,10 +60,8 @@ html {
   align-items: center;
   justify-content: center;
   padding: 1rem;
-  background: black;
-  cursor: pointer;
+  background-color: blue;
   visibility: hidden;
-  opacity: 0;
   transition: all 0.35s ease-in;
 }
 

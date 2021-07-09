@@ -15,36 +15,26 @@
     <!-- warnings/ alerts, login, notification (you've got mail),
     lightbox/theater, hovercard, dialogue box, tabbed modal -->
 
-    <!--      -->
-    <!--      -->
-    <!--      -->
-    <!--      -->
-    <!--      -->
-    <!-- new modal style -->
-    <div class="btnGroup">
+    <!-- Basic modal launch buttons -->
+    <div>
       <button type="button" class="openModal" data-open="modalA">
-        Launch first modal
+        Modal A
       </button>
       <button type="button" class="openModal" data-open="modalB">
-        Launch second modal
+        Modal B
       </button>
     </div>
 
+    <!-- Modal A -->
     <div class="modal" id="modalA">
       <div class="modalDialog">
         <header class="modalHeader">
-          Header
+          Header A
           <button class="closeModal" aria-label="close modal" data-close>
             &times;
           </button>
         </header>
         <section class="modalContent">
-          <p>
-            <strong
-              >Press &times;, ESC, or click outside of the modal to close
-              it</strong
-            >
-          </p>
           <p>
             The path of the righteous man is beset on all sides by the
             iniquities of the selfish and the tyranny of evil men. Blessed is he
@@ -83,25 +73,20 @@
             it doesn't hold a candle to man.
           </p>
         </section>
-        <footer class="modalFooter">Footer</footer>
+        <footer class="modalFooter">Footer A</footer>
       </div>
     </div>
 
+    <!-- Modal B -->
     <div class="modal" id="modalB">
       <div class="modalDialog">
         <header class="modalHeader">
-          The header of the second modal
+          Header B
           <button class="closeModal" aria-label="close modal" data-close>
             &times;
           </button>
         </header>
         <section class="modalContent">
-          <p>
-            <strong
-              >Press &times;, ESC, or click outside of the modal to close
-              it</strong
-            >
-          </p>
           <p>
             You think water moves fast? You should see ice. It moves like it has
             a mind. Like it knows it killed the world once and got a taste for
@@ -113,17 +98,9 @@
             it doesn't hold a candle to man.
           </p>
         </section>
-        <footer class="modalFooter">The footer of the second modal</footer>
+        <footer class="modalFooter">Footer B</footer>
       </div>
     </div>
-    <!--      -->
-    <!--      -->
-    <!--      -->
-    <!--      -->
-    <!--      -->
-
-    <!-- Shade page when a modal is active -->
-    <div id="backdrop" class="hidden"></div>
 
     <!-- Scripts -->
     <script type="text/javascript" src="test.js"></script>
