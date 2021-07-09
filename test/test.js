@@ -1,30 +1,28 @@
 // Doc elements
-const modalBtn = document.querySelector("#modalBtn");
-const modalA = document.querySelector("#modalA");
+const modalABtn = document.querySelector("#modalABtn");
+const modImgBtn = document.querySelector("#modImgBtn");
 const modalClose = document.querySelectorAll(".modalClose");
-const modImg = document.querySelector("#modImg");
-const modImg2 = document.querySelector("#modImg2");
+const backdrop = document.querySelector("#backdrop");
 
 // Event listeners
-modalBtn.addEventListener("click", modalClickHandler);
+modalABtn.addEventListener("click", modalOpenHandler);
 for (let elem of modalClose) {
   elem.addEventListener("click", modalCloseHandler);
 }
-modImg.addEventListener("click", modImgHandler);
+modImgBtn.addEventListener("click", modalOpenHandler);
 
 // Functions
-function modalClickHandler() {
-  modalA.classList.remove("hidden");
-  modalA.classList.add("vis");
+function modalOpenHandler(e) {
+  let mod = e.target.id.replace("Btn", "");
+  mod = document.querySelector(`#${mod}`);
+  mod.classList.add("vis");
+  mod.classList.remove("hidden");
+  backdrop.classList.remove("hidden");
 }
 
 function modalCloseHandler(e) {
   let parent = e.target.closest(".vis");
   parent.classList.add("hidden");
   parent.classList.remove("vis");
-}
-
-function modImgHandler() {
-  modImg2.classList.remove("hidden");
-  modImg2.style.display = "block";
+  backdrop.classList.add("hidden");
 }

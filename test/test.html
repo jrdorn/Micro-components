@@ -8,11 +8,11 @@
     <link rel="stylesheet" type="text/css" href="test.css" />
   </head>
   <body>
-    <!--    Header      -->
+    <!-- Header -->
     <header><h3 id="header">Micro-Components</h3></header>
 
     <!-- Modals -->
-    <button id="modalBtn">Display modal</button>
+    <button id="modalABtn">Display modal</button>
 
     <div id="modalA" class="hidden">
       <div id="modalContent">
@@ -24,11 +24,15 @@
     </div>
 
     <!-- Modal image -->
-    <img src="../img/cat.png" id="modImg" />
-    <div id="modImg2" class="hidden">
+    <img src="../img/cat.png" id="modImgBtn" />
+
+    <div id="modImg" class="hidden">
       <span id="modImgClose" class="modalClose">&times;</span>
       <img src="../img/cat.png" />
     </div>
+
+    <!-- Shade page when a modal is active -->
+    <div id="backdrop" class="hidden"></div>
 
     <!-- Scripts -->
     <script type="text/javascript" src="test.js"></script>
