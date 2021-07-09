@@ -46,3 +46,12 @@ html {
 .hidden {
   display: none;
 }
+
+#modalA {
+  background-color: navy;
+  font-size: 2rem;
+}
+
+#modalContent {
+  background-color: teal;
+}
