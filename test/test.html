@@ -12,7 +12,7 @@
     <header><h3 id="header">Micro-Components</h3></header>
 
     <!-- MODAL TODO -->
-    <!-- warnings/ alerts, login, notification (you've got mail),
+    <!-- login, notification (you've got mail),
     lightbox/theater, hovercard, dialogue box, tabbed modal -->
 
     <!-- Basic modal launch buttons -->
@@ -25,7 +25,7 @@
       </button>
     </div>
 
-    <!-- Modal A -->
+    <!-- Basic Modal A -->
     <div class="modal" id="modalA">
       <div class="modalDialog">
         <header class="modalHeader">
@@ -77,7 +77,7 @@
       </div>
     </div>
 
-    <!-- Modal B -->
+    <!-- Basic Modal B -->
     <div class="modal" id="modalB">
       <div class="modalDialog">
         <header class="modalHeader">
@@ -99,6 +99,28 @@
           </p>
         </section>
         <footer class="modalFooter">Footer B</footer>
+      </div>
+    </div>
+
+    <!-- Warning/ alert modal -->
+    <button type="button" class="openModal" data-open="warningMod">
+      Warning
+    </button>
+    <div class="modal" id="warningMod">
+      <div class="modalDialog">
+        <header class="modalHeader">
+          Warning
+          <button class="closeModal" aria-label="close modal" data-close>
+            &times;
+          </button>
+        </header>
+        <section class="modalContent">
+          <p>Are you sure?</p>
+        </section>
+        <div>
+          <button id="cancelButton">Cancel</button>
+          <button id="delButton">Delete</button>
+        </div>
       </div>
     </div>
 
