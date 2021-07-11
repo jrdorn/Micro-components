@@ -11,10 +11,6 @@
     <!-- Header -->
     <header><h3 id="header">Micro-Components</h3></header>
 
-    <!-- MODAL TODO -->
-    <!-- login, notification (you've got mail),
-    lightbox/theater, hovercard, dialogue box, tabbed modal -->
-
     <!-- Basic modal launch buttons -->
     <div>
       <button type="button" class="openModal" data-open="modalA">
@@ -123,6 +119,74 @@
         </div>
       </div>
     </div>
+
+    <!-- Login -->
+    <button type="button" class="openModal" data-open="loginMod">Login</button>
+    <div class="modal" id="loginMod">
+      <div class="modalDialog">
+        <header class="modalHeader">
+          Login
+          <button class="closeModal" aria-label="close modal" data-close>
+            &times;
+          </button>
+        </header>
+        <section class="modalContent">
+          <form>
+            <input type="text" placeholder="Username..." />
+            <input type="text" placeholder="Password..." />
+          </form>
+        </section>
+        <button id="loginButton">Login</button>
+      </div>
+    </div>
+
+    <!-- Notification -->
+    <button type="button" class="openModal" data-open="notifMod">
+      Notification
+    </button>
+    <div class="modal" id="notifMod">
+      <div class="modalDialog">
+        <header class="modalHeader">
+          You've got mail
+          <button class="closeModal" aria-label="close modal" data-close>
+            &times;
+          </button>
+        </header>
+        <section class="modalContent">
+          <p>Sam sent you an email</p>
+        </section>
+      </div>
+    </div>
+
+    <!-- Lightbox/ theater -->
+    <button type="button" class="openModal" data-open="theaterMod">
+      Lightbox
+    </button>
+    <div class="modal" id="theaterMod">
+      <div class="modalDialog">
+        <section class="modalContent"><img src="../img/cat.png" /></section>
+      </div>
+    </div>
+
+    <!-- Hovercard -->
+
+    <!-- Dialog box -->
+    <button type="button" class="openModal" data-open="diaMod">Dialog</button>
+    <div class="modal" id="diaMod">
+      <div class="modalDialog">
+        <header class="modalHeader">
+          Edit event
+          <button class="closeModal" aria-label="close modal" data-close>
+            &times;
+          </button>
+        </header>
+        <section class="modalContent">
+          <p>Start</p>
+        </section>
+      </div>
+    </div>
+
+    <!-- Tabbed modal -->
 
     <!-- Scripts -->
     <script type="text/javascript" src="test.js"></script>
