@@ -210,11 +210,16 @@ button {
 .notifContent .b {
   color: gray;
   border-top: 1px solid lightgray;
-  /* justify-self: center; */
   padding-left: 40%;
   padding-right: 40%;
 }
 
 .notifContent .b:hover {
   color: blue;
+}
+
+/* lightbox */
+
+#curr {
+  max-height: 60vh;
 }
