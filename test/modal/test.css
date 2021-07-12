@@ -185,6 +185,36 @@ button {
   border-radius: 5px;
   width: 80%;
   padding: 0.5em;
-  margin-bottom: 0.5em;
+  margin-bottom: 2em;
   justify-self: center;
+}
+
+/* notifications */
+
+.notifHeader {
+  color: black;
+  display: flex;
+  justify-content: center;
+}
+
+.notifContent {
+  display: grid;
+  justify-items: center;
+}
+
+.notifContent .sub {
+  color: lightgray;
+  border: none;
+}
+
+.notifContent .b {
+  color: gray;
+  border-top: 1px solid lightgray;
+  /* justify-self: center; */
+  padding-left: 40%;
+  padding-right: 40%;
+}
+
+.notifContent .b:hover {
+  color: blue;
 }
