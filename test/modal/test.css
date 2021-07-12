@@ -39,6 +39,8 @@ html {
 
 /* || Modal styles */
 
+/* general */
+
 button {
   cursor: pointer;
 }
@@ -110,4 +112,32 @@ button {
 
 .modal p + p {
   margin-top: 1rem;
+}
+
+/* warning */
+
+.warningDialog {
+  background-color: oldlace;
+  display: grid;
+  justify-items: center;
+}
+
+.warningContent {
+  color: red;
+  display: grid;
+  justify-content: center;
+}
+.warningContent > h1 {
+  justify-self: center;
+}
+
+#cancelButton,
+#delButton {
+  font-family: inherit;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5em;
+  color: oldlace;
+  background-color: rgb(128, 128, 128);
+  margin: 0.5em;
 }

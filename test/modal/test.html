@@ -103,15 +103,10 @@
       Warning
     </button>
     <div class="modal" id="warningMod">
-      <div class="modalDialog">
-        <header class="modalHeader">
-          Warning
-          <button class="closeModal" aria-label="close modal" data-close>
-            &times;
-          </button>
-        </header>
-        <section class="modalContent">
-          <p>Are you sure?</p>
+      <div class="modalDialog warningDialog">
+        <section class="modalContent warningContent">
+          <h1>Are you sure?</h1>
+          <p>This cannot be undone.</p>
         </section>
         <div>
           <button id="cancelButton">Cancel</button>
@@ -170,7 +165,7 @@
 
     <!-- Hovercard -->
 
-    <!-- Dialog box -->
+    <!-- Event dialog -->
     <button type="button" class="openModal" data-open="diaMod">Dialog</button>
     <div class="modal" id="diaMod">
       <div class="modalDialog">
