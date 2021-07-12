@@ -19,16 +19,21 @@ for (const mod of closedModals) {
   });
 }
 
-//close modal on clicking outside
+//close modal on clicking outside, or on a button inside a module
 document.addEventListener("click", (e) => {
-  if (e.target == document.querySelector(".modal.vis")) {
+  if (
+    e.target === document.querySelector(".modal.vis") ||
+    e.target === document.querySelector("#cancelButton") ||
+    e.target === document.querySelector("#delButton") ||
+    e.target === document.querySelector("#loginButton")
+  ) {
     document.querySelector(".modal.vis").classList.remove("vis");
   }
 });
 
 //close modal on pressing 'esc'
 document.addEventListener("keyup", (e) => {
-  if (e.key == "Escape" && document.querySelector(".modal.vis")) {
+  if (e.key === "Escape" && document.querySelector(".modal.vis")) {
     document.querySelector(".modal.vis").classList.remove("vis");
   }
 });

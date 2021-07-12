@@ -118,14 +118,18 @@
     <!-- Login -->
     <button type="button" class="openModal" data-open="loginMod">Login</button>
     <div class="modal" id="loginMod">
-      <div class="modalDialog">
-        <header class="modalHeader">
-          Login
-          <button class="closeModal" aria-label="close modal" data-close>
-            &times;
-          </button>
+      <div class="modalDialog loginDialog">
+        <header class="loginHeader">
+          <div id="row1">
+            <button class="closeModal" aria-label="close modal" data-close>
+              &times;
+            </button>
+          </div>
+          <div id="row2">
+            <h2>Login</h2>
+          </div>
         </header>
-        <section class="modalContent">
+        <section class="modalContent loginContent">
           <form>
             <input type="text" placeholder="Username..." />
             <input type="text" placeholder="Password..." />

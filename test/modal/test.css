@@ -141,3 +141,50 @@ button {
   background-color: rgb(128, 128, 128);
   margin: 0.5em;
 }
+
+/* login */
+
+.loginDialog {
+  background-color: oldlace;
+  color: gray;
+  display: grid;
+}
+
+.loginHeader {
+  display: grid;
+}
+
+#row1 {
+  justify-self: end;
+}
+
+#row1 button {
+  background: none;
+  border: none;
+  color: gray;
+  font-size: 1rem;
+}
+
+#row2 {
+  justify-self: center;
+}
+
+.loginContent form input {
+  display: block;
+  margin-bottom: 1em;
+  font-size: 1rem;
+  padding: 0.5em;
+  border-radius: 5px;
+  border: none;
+}
+
+#loginButton {
+  background-color: teal;
+  color: oldlace;
+  border: none;
+  border-radius: 5px;
+  width: 80%;
+  padding: 0.5em;
+  margin-bottom: 0.5em;
+  justify-self: center;
+}
