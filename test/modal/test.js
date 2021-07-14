@@ -2,6 +2,40 @@
 const openModals = document.querySelectorAll("[data-open]");
 const closedModals = document.querySelectorAll("[data-close]");
 
+let thContent = document.querySelector(".thContent");
+let sel = document.querySelector("#sel");
+let thumbnails = document.querySelectorAll("#thumbnails img");
+
+// || Functions
+
+function fadeOut(elem) {
+  let opacity = 1;
+  let timer = setInterval(function () {
+    if (opacity <= 0.05) {
+      clearInterval(timer);
+    }
+    elem.style.opacity = opacity;
+    elem.style.filter = `alpha(opacity=${opacity * 100})`;
+    opacity -= opacity * 0.1;
+  }, 30);
+}
+
+function fadeIn(elem) {
+  let opacity = 0.1;
+  let timer = setInterval(function () {
+    if (opacity >= 1) {
+      clearInterval(timer);
+    }
+    elem.style.opacity = opacity;
+    elem.style.filter = `alpha(opacity=${opacity * 100})`;
+    opacity += opacity * 0.1;
+  }, 30);
+}
+
+async function delay(millisec) {
+  return await new Promise((resolve) => setTimeout(resolve, millisec));
+}
+
 // || Event listeners
 
 //launch modal on click
@@ -35,5 +69,30 @@ document.addEventListener("click", (e) => {
 document.addEventListener("keyup", (e) => {
   if (e.key === "Escape" && document.querySelector(".modal.vis")) {
     document.querySelector(".modal.vis").classList.remove("vis");
+  }
+});
+
+//set opacity of first image
+thumbnails[0].style.opacity = 0.5;
+//click thumbnail to select new main image in theater
+thContent.addEventListener("click", (e) => {
+  if (e.target.tagName === "IMG" && e.target.id !== "sel") {
+    //reset opacity on all thumbnails
+    thumbnails.forEach((img) => (img.style.opacity = 1));
+
+    (async function () {
+      //fade out current image
+      fadeOut(sel);
+      await delay(900);
+
+      //change current image to clicked image
+      sel.src = e.target.src;
+
+      //fade in clicked image
+      fadeIn(sel);
+
+      //change opacity in thumbnail list
+      e.target.style.opacity = 0.5;
+    })();
   }
 });

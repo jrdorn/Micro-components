@@ -221,5 +221,15 @@ button {
 /* lightbox */
 
 #curr {
-  max-height: 60vh;
+  display: flex;
+  justify-content: center;
+}
+
+#curr img {
+  max-height: 50vh;
+  margin: 1em;
+}
+
+#thumbnails img {
+  max-height: 5em;
 }
