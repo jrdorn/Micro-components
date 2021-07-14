@@ -1,6 +1,7 @@
 // || Doc elements
 const openModals = document.querySelectorAll("[data-open]");
 const closedModals = document.querySelectorAll("[data-close]");
+const hoverA = document.querySelector("#hoverA");
 
 let thContent = document.querySelector(".thContent");
 let sel = document.querySelector("#sel");
@@ -95,4 +96,9 @@ thContent.addEventListener("click", (e) => {
       e.target.style.opacity = 0.5;
     })();
   }
+});
+
+hoverA.addEventListener("mouseover", (e) => {
+  const modalId = e.target.dataset.open;
+  document.getElementById(modalId).classList.add("vis");
 });
