@@ -236,8 +236,8 @@ button {
 
 /* hovercard */
 
-.modal #hoverMod {
-  background-color: red;
+#hoverMod {
+  background: none;
 }
 
 #hoverPara {
@@ -247,7 +247,8 @@ button {
   margin-right: 10em;
 }
 
-#hoverPara a {
+#hoverA {
+  z-index: 30;
   color: green;
 }
 
@@ -255,11 +256,26 @@ button {
   color: turquoise;
 }
 
-#hoverCat {
-  max-height: 10em;
+.hoverDialog {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  width: 40vw;
+  height: 40vh;
+  left: 2em;
+  top: -5em;
+  font-size: 0.8rem;
+  border: 5px solid green;
 }
 
-.hoverDialog {
-  max-width: 50vw;
-  max-height: 50vh;
+#hoverText {
+  margin: 0;
+  padding: 0;
+  border: 2px solid blue;
+}
+
+#hoverCat {
+  height: 85%;
+  padding: 0;
+  margin: 0;
+  border: 2px solid red;
 }

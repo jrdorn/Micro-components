@@ -82,6 +82,9 @@ thContent.addEventListener("click", (e) => {
     thumbnails.forEach((img) => (img.style.opacity = 1));
 
     (async function () {
+      //change opacity in thumbnail list
+      e.target.style.opacity = 0.5;
+
       //fade out current image
       fadeOut(sel);
       await delay(900);
@@ -91,14 +94,19 @@ thContent.addEventListener("click", (e) => {
 
       //fade in clicked image
       fadeIn(sel);
-
-      //change opacity in thumbnail list
-      e.target.style.opacity = 0.5;
     })();
   }
 });
 
+//
 hoverA.addEventListener("mouseover", (e) => {
   const modalId = e.target.dataset.open;
   document.getElementById(modalId).classList.add("vis");
+});
+
+//
+hoverA.addEventListener("mouseout", (e) => {
+  const modalId = e.target.dataset.open;
+  // console.log(modalId);
+  // document.getElementById(modalId).classList.remove("vis");
 });
