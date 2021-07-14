@@ -98,15 +98,14 @@ thContent.addEventListener("click", (e) => {
   }
 });
 
-//
+//open hovercard on mousing over link
 hoverA.addEventListener("mouseover", (e) => {
   const modalId = e.target.dataset.open;
   document.getElementById(modalId).classList.add("vis");
 });
 
-//
+//close hovercard on mouse out
 hoverA.addEventListener("mouseout", (e) => {
   const modalId = e.target.dataset.open;
-  // console.log(modalId);
-  // document.getElementById(modalId).classList.remove("vis");
+  document.getElementById(modalId).classList.remove("vis");
 });

@@ -238,6 +238,9 @@ button {
 
 #hoverMod {
   background: none;
+  position: absolute;
+  top: 11em;
+  left: 3em;
 }
 
 #hoverPara {
@@ -245,37 +248,47 @@ button {
   font-size: 1rem;
   margin-left: 10em;
   margin-right: 10em;
+  z-index: 2;
 }
 
 #hoverA {
-  z-index: 30;
   color: green;
 }
 
-#hoverPara a:hover {
+#hoverA:hover {
   color: turquoise;
 }
 
 .hoverDialog {
   display: grid;
   grid-template-columns: 2fr 1fr;
+  overflow: hidden;
   width: 40vw;
   height: 40vh;
-  left: 2em;
-  top: -5em;
-  font-size: 0.8rem;
-  border: 5px solid green;
+
+  font-size: 0.75rem;
+  background-color: oldlace;
+  color: slategrey;
 }
 
 #hoverText {
+  width: 14.5em;
   margin: 0;
   padding: 0;
-  border: 2px solid blue;
+}
+
+#hoverText h1 {
+  margin-left: 0.8em;
+  font-size: 1rem;
+}
+
+#hoverText p {
+  padding-left: 1em;
+  padding-right: 1em;
 }
 
 #hoverCat {
-  height: 85%;
+  height: 100%;
   padding: 0;
   margin: 0;
-  border: 2px solid red;
 }
