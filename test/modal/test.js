@@ -2,6 +2,8 @@
 const openModals = document.querySelectorAll("[data-open]");
 const closedModals = document.querySelectorAll("[data-close]");
 const hoverA = document.querySelector("#hoverA");
+const autoSearch = document.querySelector("#autoSearch");
+const colorPicker = document.querySelector("#colorPicker");
 
 let thContent = document.querySelector(".thContent");
 let sel = document.querySelector("#sel");
@@ -114,7 +116,6 @@ hoverA.addEventListener("mouseout", (e) => {
 
 //autocomplete location search
 function initMap() {
-  const autoSearch = document.querySelector("#autoSearch");
   const autocomplete = new google.maps.places.Autocomplete(autoSearch);
 }
 
@@ -124,10 +125,9 @@ myForm.addEventListener("submit", (e) => {
   e.preventDefault();
 });
 
-//
+//click "Use my location" to fill form with user's current location
 const geo = document.querySelector("#geo");
 geo.addEventListener("click", geoFindMe);
-
 function geoFindMe() {
   if (!navigator.geolocation) {
     alert("Geolocation not supported");
@@ -143,13 +143,19 @@ function geoFindMe() {
 
     fetch(revGeo)
       .then((response) => response.json())
-      .then((data) => console.log(data.results[7].formatted_address));
+      .then((data) => (autoSearch.value = data.results[7].formatted_address));
   }
 
   function error() {
     alert("Unable to get your location");
   }
 }
+
+//change color of header
+colorPicker.addEventListener("input", () => {
+  let colorValue = colorPicker.value;
+  document.querySelector("#diaHead").style.backgroundColor = colorValue;
+});
 
 //
 // || Timezones
@@ -162,5 +168,3 @@ function geoFindMe() {
 // fetch("timezones.json")
 //   .then((response) => response.json())
 //   .then((json) => console.log(json));
-
-// || Geolocation
