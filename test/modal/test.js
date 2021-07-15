@@ -100,12 +100,20 @@ thContent.addEventListener("click", (e) => {
 
 //open hovercard on mousing over link
 hoverA.addEventListener("mouseover", (e) => {
+  document.querySelector("#hoverPara").classList.add("important");
   const modalId = e.target.dataset.open;
   document.getElementById(modalId).classList.add("vis");
 });
 
 //close hovercard on mouse out
 hoverA.addEventListener("mouseout", (e) => {
+  document.querySelector("#hoverPara").classList.remove("important");
   const modalId = e.target.dataset.open;
   document.getElementById(modalId).classList.remove("vis");
 });
+
+//autocomplete location search
+function initMap() {
+  const autoSearch = document.querySelector("#autoSearch");
+  const autocomplete = new google.maps.places.Autocomplete(autoSearch);
+}

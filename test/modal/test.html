@@ -4,7 +4,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>JS Projects</title>
-    <link rel="shortcut icon" type="image/jpg" href="../img/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="test.css" />
   </head>
   <body>
@@ -206,16 +205,54 @@
 
     <!-- Event dialog -->
     <button type="button" class="openModal" data-open="diaMod">Dialog</button>
+
     <div class="modal" id="diaMod">
-      <div class="modalDialog">
-        <header class="modalHeader">
-          Edit event
-          <button class="closeModal" aria-label="close modal" data-close>
+      <div class="modalDialog" id="diaDialog">
+        <section id="diaHead" class="modalHeader">
+          <button
+            id="diaClose"
+            class="closeModal"
+            aria-label="close modal"
+            data-close
+          >
             &times;
           </button>
-        </header>
-        <section class="modalContent">
-          <p>Start</p>
+          <h1>Page title</h1>
+          <button id="diaSubmit">SUBMIT</button>
+        </section>
+        <section id="diaCont" class="modalContent">
+          <form>
+            <!-- Event name -->
+            <input type="text" placeholder="Event name" />
+
+            <!-- || Location autofill -->
+            <input id="autoSearch" type="text" placeholder="Location" />
+
+            <!-- || From -->
+            <!-- date picker  -->
+            <input type="date" />
+            <!-- time picker  -->
+            <input type="time" />
+
+            <!-- || To -->
+            <!-- date picker  -->
+            <input type="date" />
+            <!-- time picker  -->
+            <input type="time" />
+
+            <!-- || color picker  -->
+            <!--              -->
+            <input type="color" />
+
+            <!-- || checkbox- all day -->
+            <input id="diaCheck" type="checkbox" />
+
+            <!-- || timezone -->
+            <select>
+              <!-- (pull from API) -->
+              <option>One</option>
+            </select>
+          </form>
         </section>
       </div>
     </div>
@@ -224,6 +261,10 @@
     <div>Tabbed modal placeholder</div>
 
     <!-- Scripts -->
+    <script
+      async
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDPZ1M045id9WaRRxlUqbq90OAdxHW1vjE&libraries=places&callback=initMap"
+    ></script>
     <script type="text/javascript" src="test.js"></script>
   </body>
 </html>
