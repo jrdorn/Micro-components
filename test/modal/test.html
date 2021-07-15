@@ -225,7 +225,7 @@
             <!-- Event name -->
             <input type="text" placeholder="Event name" />
 
-            <!-- || Location search with autofill -->
+            <!-- Location search with autofill -->
             <input id="autoSearch" type="text" placeholder="Location" />
             <button id="geo">Use my location</button>
 
@@ -237,17 +237,14 @@
             <input type="date" />
             <input type="time" />
 
-            <!-- || color picker  -->
+            <!-- Color picker  -->
             <input id="colorPicker" type="color" />
 
             <!-- Checkbox- all day -->
             <input id="diaCheck" type="checkbox" />
 
-            <!-- || timezone -->
-            <select id="tzones">
-              <!-- (pull from API) -->
-              <option>One</option>
-            </select>
+            <!-- Select timezone -->
+            <select id="tzones"></select>
           </form>
         </section>
       </div>
@@ -277,6 +274,7 @@
     <!-- Scripts -->
     <script
       async
+      type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDPZ1M045id9WaRRxlUqbq90OAdxHW1vjE&libraries=places&callback=initMap"
     ></script>
     <script type="text/javascript" src="test.js"></script>

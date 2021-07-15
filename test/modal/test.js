@@ -159,12 +159,22 @@ colorPicker.addEventListener("input", () => {
 
 //
 // || Timezones
-// let tzones = document.querySelector("#tzones");
-// console.log(tzones);
-// https://github.com/dmfilipenko/timezones.json/blob/master/timezones.json
-// https://www.w3schools.com/js/js_date_methods.asp
-// https://www.w3schools.com/code/tryit.asp?filename=FED216E6BIIJ
+const tzones = document.querySelector("#tzones");
 
-// fetch("timezones.json")
-//   .then((response) => response.json())
-//   .then((json) => console.log(json));
+(function () {
+  fetch("http://localhost:3000/tz.json")
+    .then((response) => response.json())
+    .then((data) => handle(data))
+    .catch((error) => {
+      console.error(`Error: ${error}`);
+    });
+})();
+
+function handle(data) {
+  for (let i = 0; i < data.length; i++) {
+    let option = document.createElement("option");
+    option.value = data[i].value;
+    option.text = data[i].value;
+    tzones.appendChild(option);
+  }
+}
