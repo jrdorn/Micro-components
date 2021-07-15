@@ -118,11 +118,39 @@ function initMap() {
   const autocomplete = new google.maps.places.Autocomplete(autoSearch);
 }
 
+//prevent dialog form from refreshing page
+const myForm = document.querySelector("#myForm");
+myForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+});
+
 //
 const geo = document.querySelector("#geo");
-geo.addEventListener("click", (e) => {
-  console.log(e);
-});
+geo.addEventListener("click", geoFindMe);
+
+function geoFindMe() {
+  if (!navigator.geolocation) {
+    alert("Geolocation not supported");
+  } else {
+    navigator.geolocation.getCurrentPosition(success, error);
+  }
+
+  function success(position) {
+    const lat = position.coords.latitude;
+    const lng = position.coords.longitude;
+
+    let revGeo = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=AIzaSyDPZ1M045id9WaRRxlUqbq90OAdxHW1vjE`;
+
+    fetch(revGeo)
+      .then((response) => response.json())
+      .then((data) => console.log(data.results[7].formatted_address));
+  }
+
+  function error() {
+    alert("Unable to get your location");
+  }
+}
+
 //
 // || Timezones
 // let tzones = document.querySelector("#tzones");

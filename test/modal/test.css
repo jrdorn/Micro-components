@@ -338,3 +338,12 @@ button {
   color: #2c2c2c;
   font-family: "Open Sans", sans-serif;
 }
+
+#geo {
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: #2c2c2c;
+  font-family: "Open Sans", sans-serif;
+  letter-spacing: 0.1em;
+}
