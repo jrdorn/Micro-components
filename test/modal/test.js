@@ -117,3 +117,22 @@ function initMap() {
   const autoSearch = document.querySelector("#autoSearch");
   const autocomplete = new google.maps.places.Autocomplete(autoSearch);
 }
+
+//
+const geo = document.querySelector("#geo");
+geo.addEventListener("click", (e) => {
+  console.log(e);
+});
+//
+// || Timezones
+// let tzones = document.querySelector("#tzones");
+// console.log(tzones);
+// https://github.com/dmfilipenko/timezones.json/blob/master/timezones.json
+// https://www.w3schools.com/js/js_date_methods.asp
+// https://www.w3schools.com/code/tryit.asp?filename=FED216E6BIIJ
+
+// fetch("timezones.json")
+//   .then((response) => response.json())
+//   .then((json) => console.log(json));
+
+// || Geolocation

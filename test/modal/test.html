@@ -225,8 +225,9 @@
             <!-- Event name -->
             <input type="text" placeholder="Event name" />
 
-            <!-- || Location autofill -->
+            <!-- Location search with autofill -->
             <input id="autoSearch" type="text" placeholder="Location" />
+            <a id="geo">Use my location</a>
 
             <!-- || From -->
             <!-- date picker  -->
@@ -248,7 +249,7 @@
             <input id="diaCheck" type="checkbox" />
 
             <!-- || timezone -->
-            <select>
+            <select id="tzones">
               <!-- (pull from API) -->
               <option>One</option>
             </select>
@@ -258,7 +259,25 @@
     </div>
 
     <!-- Tabbed modal -->
-    <div>Tabbed modal placeholder</div>
+    <button type="button" class="openModal" data-open="tabMod">
+      Tabbed modal
+    </button>
+    <div class="modal" id="tabMod">
+      <div class="modalDialog">
+        <header class="modalHeader">
+          Tabbed modal
+          <button class="closeModal" aria-label="close modal" data-close>
+            &times;
+          </button>
+        </header>
+        <section class="modalContent">
+          <p>
+            The path of the righteous man is beset on all sides by the
+            iniquities of the selfish and the tyranny of evil men.
+          </p>
+        </section>
+      </div>
+    </div>
 
     <!-- Scripts -->
     <script
