@@ -347,3 +347,29 @@ button {
   font-family: "Open Sans", sans-serif;
   letter-spacing: 0.1em;
 }
+
+/* tabs */
+
+.tabs {
+  display: inline-block;
+  background-color: grey;
+  padding: 0.75rem;
+  color: #fff;
+}
+
+.tab-panel {
+  border: 2px solid black;
+  min-height: 50px;
+  max-width: 250px;
+  padding: 1rem;
+}
+
+.selected {
+  background-color: black;
+}
+
+/* binary interpreter */
+
+#outputText {
+  margin-bottom: 10em;
+}

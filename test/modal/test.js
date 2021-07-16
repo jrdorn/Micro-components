@@ -157,18 +157,17 @@ colorPicker.addEventListener("input", () => {
   document.querySelector("#diaHead").style.backgroundColor = colorValue;
 });
 
-//
-// || Timezones
+//timezones
 const tzones = document.querySelector("#tzones");
 
-(function () {
-  fetch("http://localhost:3000/tz.json")
-    .then((response) => response.json())
-    .then((data) => handle(data))
-    .catch((error) => {
-      console.error(`Error: ${error}`);
-    });
-})();
+// (function () {
+//   fetch("http://localhost:3000/tz.json")
+//     .then((response) => response.json())
+//     .then((data) => handle(data))
+//     .catch((error) => {
+//       console.error(`Error: ${error}`);
+//     });
+// })();
 
 function handle(data) {
   for (let i = 0; i < data.length; i++) {
@@ -177,4 +176,62 @@ function handle(data) {
     option.text = data[i].value;
     tzones.appendChild(option);
   }
+}
+
+//tabs
+
+const tabCount = 5;
+
+const tabClick = (e) => {
+  const tabButtonClicked = e.target;
+  const id = e.target.dataset.id;
+
+  //
+  for (let i = 1; i <= tabCount; i++) {
+    let tabButtonId = `#tabButton${i}`;
+    let tabButton = document.querySelector(tabButtonId);
+    let tabId = `#${tabButton.dataset.id}`;
+    let tab = document.querySelector(tabId);
+    tabButton.classList.remove("selected");
+    tab.classList.add("hidden");
+  }
+
+  //
+  document.querySelector(`#${id}`).classList.remove("hidden");
+  tabButtonClicked.classList.add("selected");
+};
+
+const bindTabs = () => {
+  //
+  for (let i = 1; i <= tabCount; i++) {
+    let tabButtonId = `#tabButton${i}`;
+    let tabButton = document.querySelector(tabButtonId);
+    tabButton.addEventListener("click", tabClick);
+  }
+};
+
+//
+document.addEventListener("DOMContentLoaded", () => {
+  bindTabs();
+});
+
+//
+let output = document.querySelector("#output");
+output.value = "";
+function textToBin() {
+  let input = document.querySelector("#inputText").value;
+  output.value = "";
+  for (let i = 0; i < input.length; i++) {
+    output.value += input[i].charCodeAt(0).toString(2) + " ";
+    console.log(input[i].charCodeAt(0).toString(2) + " ");
+  }
+  console.log(input, output);
+}
+
+// to go from binary to text, use parseInt(input,2).toString(10).
+
+function binToText() {
+  let input = document.querySelector("#inputBinary").value;
+  output.value = "";
+  output.value = parseInt(input, 2).toString(10);
 }
