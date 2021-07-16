@@ -359,7 +359,7 @@ button {
 
 .tabPanel {
   border: 2px solid black;
-  padding: 1em;
+  padding: 5em;
 }
 
 .sel {
@@ -371,6 +371,10 @@ button {
 }
 
 /* binary interpreter */
+
+#output {
+  margin-bottom: 10em;
+}
 
 /* slideshow */
 

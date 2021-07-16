@@ -197,29 +197,24 @@ const tabCount = 5;
  */
 const tabClick = (e) => {
   const clickedTab = e.target;
-  const clickedPanel = document.querySelector(`#${clickedTab.dataset.open}`);
-  console.log(clickedTab, clickedPanel);
+  const clickedPanel = document.querySelector(`#${clickedTab.dataset.id}`);
   const clickedNum = clickedPanel.id[3];
 
-  //hide previously selected panel (if it was not clicked again)
   const prevTab = document.querySelector(".sel");
   const prevPanel = document.querySelector(".open");
   const prevNum = prevPanel.id[3];
+
+  //hide previously selected panel; if same tab was clicked, do nothing
   if (prevNum !== clickedNum) {
     prevTab.classList.remove("sel");
     prevPanel.classList.remove("open");
     prevPanel.classList.add("hidden");
-  }
 
-  //
-  //
-  //
-  //
-  //
-  //highlight the clicked tab button and display its data
-  clickedTab.classList.add("sel");
-  clickedPanel.classList.add("open");
-  clickedPanel.classList.remove("hidden");
+    //highlight the clicked tab button and display its data
+    clickedTab.classList.add("sel");
+    clickedPanel.classList.add("open");
+    clickedPanel.classList.remove("hidden");
+  }
 };
 
 //bind click listener to all tabs
@@ -233,20 +228,22 @@ document.addEventListener("DOMContentLoaded", () => {
 // || Binary
 let output = document.querySelector("#output");
 output.value = "";
+
 function textToBin() {
   let input = document.querySelector("#inputText").value;
   output.value = "";
   for (let i = 0; i < input.length; i++) {
-    output.value += input[i].charCodeAt(0).toString(2) + " ";
-    console.log(input[i].charCodeAt(0).toString(2) + " ");
+    //get ASCII code in decimal of each char, then convert to binary
+    let code = input[i].charCodeAt(0).toString(2);
+    code = code.padStart(8, "0"); //left-pad with 0s until length is 8
+    code += " ";
+    output.value += code;
   }
-  console.log(input, output);
+  // console.log(input, output);
 }
 
-// to go from binary to text, use parseInt(input,2).toString(10).
+////////// to go from binary to text, use parseInt(input,2).toString(10).
 
 function binToText() {
-  let input = document.querySelector("#inputBinary").value;
-  output.value = "";
-  output.value = parseInt(input, 2).toString(10);
+  console.log(1);
 }
