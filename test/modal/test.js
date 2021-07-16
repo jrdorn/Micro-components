@@ -75,7 +75,9 @@ document.addEventListener("keyup", (e) => {
   }
 });
 
-//set opacity of first image
+// || Theater
+
+//set opacity of first image in theater
 thumbnails[0].style.opacity = 0.5;
 //click thumbnail to select new main image in theater
 thContent.addEventListener("click", (e) => {
@@ -100,6 +102,8 @@ thContent.addEventListener("click", (e) => {
   }
 });
 
+// || Hovercard
+
 //open hovercard on mousing over link
 hoverA.addEventListener("mouseover", (e) => {
   document.querySelector("#hoverPara").classList.add("important");
@@ -118,6 +122,8 @@ hoverA.addEventListener("mouseout", (e) => {
 function initMap() {
   const autocomplete = new google.maps.places.Autocomplete(autoSearch);
 }
+
+// || Event dialog
 
 //prevent dialog form from refreshing page
 const myForm = document.querySelector("#myForm");
@@ -157,7 +163,7 @@ colorPicker.addEventListener("input", () => {
   document.querySelector("#diaHead").style.backgroundColor = colorValue;
 });
 
-//timezones
+// || Timezones
 const tzones = document.querySelector("#tzones");
 
 // (function () {
@@ -178,44 +184,53 @@ function handle(data) {
   }
 }
 
-//tabs
+// || Tabs
 
 const tabCount = 5;
 
+/**
+ *
+ * THINKING OUT LOUD
+ * We click 3, we want 3 to be selected and its content displayed
+ * everything else should be hidden and is already hidden,
+ * except for the previously selected tab (if it's not 3)
+ */
 const tabClick = (e) => {
-  const tabButtonClicked = e.target;
-  const id = e.target.dataset.id;
+  const clickedTab = e.target;
+  const clickedPanel = document.querySelector(`#${clickedTab.dataset.open}`);
+  console.log(clickedTab, clickedPanel);
+  const clickedNum = clickedPanel.id[3];
 
-  //
-  for (let i = 1; i <= tabCount; i++) {
-    let tabButtonId = `#tabButton${i}`;
-    let tabButton = document.querySelector(tabButtonId);
-    let tabId = `#${tabButton.dataset.id}`;
-    let tab = document.querySelector(tabId);
-    tabButton.classList.remove("selected");
-    tab.classList.add("hidden");
+  //hide previously selected panel (if it was not clicked again)
+  const prevTab = document.querySelector(".sel");
+  const prevPanel = document.querySelector(".open");
+  const prevNum = prevPanel.id[3];
+  if (prevNum !== clickedNum) {
+    prevTab.classList.remove("sel");
+    prevPanel.classList.remove("open");
+    prevPanel.classList.add("hidden");
   }
 
   //
-  document.querySelector(`#${id}`).classList.remove("hidden");
-  tabButtonClicked.classList.add("selected");
+  //
+  //
+  //
+  //
+  //highlight the clicked tab button and display its data
+  clickedTab.classList.add("sel");
+  clickedPanel.classList.add("open");
+  clickedPanel.classList.remove("hidden");
 };
 
-const bindTabs = () => {
-  //
+//bind click listener to all tabs
+document.addEventListener("DOMContentLoaded", () => {
   for (let i = 1; i <= tabCount; i++) {
-    let tabButtonId = `#tabButton${i}`;
-    let tabButton = document.querySelector(tabButtonId);
+    const tabButton = document.querySelector(`#tabButton${i}`);
     tabButton.addEventListener("click", tabClick);
   }
-};
-
-//
-document.addEventListener("DOMContentLoaded", () => {
-  bindTabs();
 });
 
-//
+// || Binary
 let output = document.querySelector("#output");
 output.value = "";
 function textToBin() {

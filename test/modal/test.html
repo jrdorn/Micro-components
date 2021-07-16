@@ -264,16 +264,16 @@
         </header>
         <section class="modalContent">
           <!--  -->
-          <div id="tabButton1" data-id="tab1" class="tab sel">tab 1</div>
-          <div id="tabButton2" data-id="tab2" class="tab">tab 2</div>
-          <div id="tabButton3" data-id="tab3" class="tab">tab 3</div>
-          <div id="tabButton4" data-id="tab4" class="tab">tab 4</div>
-          <div id="tabButton5" data-id="tab5" class="tab">tab 5</div>
-          <div id="tab1" class="tabPanel">Tab 1</div>
-          <div id="tab2" class="tabPanel hiddden">Tab 2</div>
-          <div id="tab3" class="tabPanel hiddden">Tab 3</div>
-          <div id="tab4" class="tabPanel hiddden">Tab 4</div>
-          <div id="tab5" class="tabPanel hiddden">Tab 5</div>
+          <div id="tabButton1" data-open="tab1" class="tab sel">Tab 1</div>
+          <div id="tabButton2" data-open="tab2" class="tab">Tab 2</div>
+          <div id="tabButton3" data-open="tab3" class="tab">Tab 3</div>
+          <div id="tabButton4" data-open="tab4" class="tab">Tab 4</div>
+          <div id="tabButton5" data-open="tab5" class="tab">Tab 5</div>
+          <div id="tab1" class="tabPanel open">First</div>
+          <div id="tab2" class="tabPanel hidden">Second</div>
+          <div id="tab3" class="tabPanel hidden">Third</div>
+          <div id="tab4" class="tabPanel hidden">Fourth</div>
+          <div id="tab5" class="tabPanel hidden">Fifth</div>
           <!--  -->
         </section>
       </div>
@@ -292,6 +292,24 @@
     </label>
     <textarea id="output"></textarea>
     <!-- readonly -->
+
+    <!-- Slideshow -->
+    <button type="button" class="openModal" data-open="slideMod">
+      Slideshow
+    </button>
+    <div class="modal" id="slideMod">
+      <div class="modalDialog">
+        <section class="modalContent slideContent">
+          <div id="slides">
+            <img class="slide" src="img/cat1.jpg" />
+            <img class="slide hidden" src="img/cat2.jpg" />
+            <img class="slide hidden" src="img/cat3.jpg" />
+            <img class="slide hidden" src="img/cat4.jpg" />
+            <img class="slide hidden" src="img/cat5.jpg" />
+          </div>
+        </section>
+      </div>
+    </div>
 
     <!-- Scripts -->
     <script

@@ -350,26 +350,30 @@ button {
 
 /* tabs */
 
-.tabs {
+.tab {
   display: inline-block;
   background-color: grey;
   padding: 0.75rem;
   color: #fff;
 }
 
-.tab-panel {
+.tabPanel {
   border: 2px solid black;
-  min-height: 50px;
-  max-width: 250px;
-  padding: 1rem;
+  padding: 1em;
 }
 
-.selected {
+.sel {
   background-color: black;
+}
+
+.open {
+  background-color: grey;
 }
 
 /* binary interpreter */
 
-#outputText {
-  margin-bottom: 10em;
+/* slideshow */
+
+.slide {
+  height: 20em;
 }
