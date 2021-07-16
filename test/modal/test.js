@@ -239,11 +239,18 @@ function textToBin() {
     code += " ";
     output.value += code;
   }
-  // console.log(input, output);
 }
 
-////////// to go from binary to text, use parseInt(input,2).toString(10).
-
 function binToText() {
-  console.log(1);
+  let input = document.querySelector("#inputBin").value;
+  output.value = "";
+  //list of individual binary numbers
+  let binList = input.trim().split(" ");
+
+  for (let i = 0; i < binList.length; i++) {
+    //convert string input to binary integer, then convert to ascii string in base 10
+    let ascii = parseInt(binList[i], 2).toString(10);
+    //convert ascii to character and add to output
+    output.value += String.fromCharCode(ascii);
+  }
 }
