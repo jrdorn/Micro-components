@@ -247,3 +247,143 @@ function binToText() {
     output.value += String.fromCharCode(ascii);
   }
 }
+
+// || Slides
+
+// let sIndex = 1;
+// let mySlide = document.querySelector(`#mySlide`);
+
+// class SlideShow {
+//   constructor() {
+//     this.index = 1;
+//   }
+//   runSlide() {
+//     (async function () {
+//       //fade out current image
+//       await delay(3000);
+//       console.log(1);
+//       fadeOut(mySlide);
+//       await delay(3000);
+//       console.log(2);
+
+//       //change to next image
+//       this.index++;
+//       if (this.index === 6) {
+//         this.index = 1;
+//       }
+//       mySlide.src = `img/cat${this.index}.jpg`;
+
+//       //fade in next image
+//       fadeIn(mySlide);
+//     })();
+//   }
+// }
+
+// async function delay(millisec) {
+//   return await new Promise((resolve) => setTimeout(resolve, millisec));
+// }
+
+/////////////////////////////////////////////////////////////////////////////
+
+// function showSlides() {
+//   (async function () {
+//     //fade out current image
+//     await delay(3000);
+//     console.log(1);
+//     fadeOut(mySlide);
+//     await delay(3000);
+//     console.log(2);
+
+//     //change to next image
+//     sIndex++;
+//     if (sIndex === 6) {
+//       sIndex = 1;
+//     }
+//     mySlide.src = `img/cat${sIndex}.jpg`;
+
+//     //fade in next image
+//     fadeIn(mySlide);
+//   })();
+// }
+
+// mySlide.addEventListener("click", () => {
+//   // setInterval(function () {
+//   //   showSlides();
+//   // }, 1000);
+//   showSlides();
+// });
+
+/////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+const slideshow = document.querySelector(".slideWrap");
+
+if (slideshow !== null) {
+  let slides = document.querySelectorAll(".slideEntry");
+  let slideCount = slides.length;
+  let currentSlide = 0;
+  let slideHeight = null;
+  let initialHeight = slides[0].clientHeight;
+
+  //activate first slide on page load
+  slides[0].classList.add("active");
+  slideshow.style.height = initialHeight + "px";
+
+  //move forward or backward in slideshow
+  function moveToSlide(n) {
+    slides[currentSlide].className = "slideEntry";
+    currentSlide = (n + slideCount) % slideCount;
+    slides[currentSlide].className = "slideEntry active";
+    slideHeight = slides[currentSlide].clientHeight;
+    slideshow.style.height = slideHeight + "px";
+    window.addEventListener("resize", function () {
+      resizedSlideHeight = slides[currentSlide].clientHeight;
+      slideshow.style.height = resizedSlideHeight + "px";
+    });
+  }
+
+  //move to next slide
+  function nextSlide(e) {
+    moveToSlide(currentSlide + 1);
+    let code = e.keyCode;
+    //right arrow key pressed
+    if (code === 39) {
+      moveToSlide(currentSlide + 1);
+    }
+  }
+
+  //move to previous slide
+  function prevSlide(e) {
+    moveToSlide(currentSlide - 1);
+    let code = e.keyCode;
+    //left arrow key pressed
+    if (code === 37) {
+      moveToSlide(currentSlide - 1);
+    }
+  }
+
+  //
+  document.querySelector("#nextSlide").addEventListener("click", nextSlide);
+  document.body.addEventListener("keydown", nextSlide);
+
+  document.querySelector("#prevSlide").addEventListener("click", prevSlide);
+  document.body.addEventListener("keydown", prevSlide);
+  //
+
+  //autoplay
+  setInterval(function () {
+    nextSlide();
+  }, 8000);
+  //
+  //ADDITION: CEASE TO TRANSITION IF USER INTERACTS WITH SLIDES
+  //
+}
+
+const tabClick = (e) => {
+  const clickedTab = e.target;
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+  const tabButton = document.querySelector(`#tabButton${i}`);
+  tabButton.addEventListener("click", tabClick);
+});

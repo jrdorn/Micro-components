@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Slides</title>
+    <link rel="stylesheet" type="text/css" href="slide.css" />
+  </head>
+  <body>
+    <!-- Image -->
+    <img src="../modal/img/cat1.jpg" />
+
+    <!-- Slideshow -->
+    <button type="button" class="openModal" data-open="slideMod">
+      Slideshow
+    </button>
+    <div class="modal" id="slideMod">
+      <div class="modalDialog">
+        <section class="modalContent slideContent">
+          <img id="mySlide" class="slide" src="img/cat1.jpg" />
+        </section>
+      </div>
+    </div>
+
+    <div class="slideWrap">
+      <div class="slideShow">
+        <div class="slideEntry">
+          <div class="slideContent"></div>
+        </div>
+
+        <ul class="slideNav">
+          <li id="prevSlide"><i>back</i></li>
+          <li id="nextSlide"><i>forward</i></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script type="text/javascript" src="slide.js"></script>
+  </body>
+</html>
