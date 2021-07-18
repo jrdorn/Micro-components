@@ -113,7 +113,7 @@ a {
     cursor: pointer;
   }
 
-  /*  */
+  /*  animate hamburger */
   .ham.active .bar:nth-child(2) {
     opacity: 0;
   }
@@ -126,3 +126,5 @@ a {
     transform: translateY(-8px) rotate(-45deg);
   }
 }
+
+/* || Side Navbar */
