@@ -28,6 +28,7 @@ function moveToSlide(n) {
 function nextSlide(e) {
   moveToSlide(currentSlide + 1);
   if (e !== undefined) {
+    clearInterval(intID);
     //right arrow key pressed
     if (e.keyCode === 39) {
       moveToSlide(currentSlide + 1);
@@ -39,6 +40,7 @@ function nextSlide(e) {
 function prevSlide(e) {
   moveToSlide(currentSlide - 1);
   if (e !== undefined) {
+    clearInterval(intID);
     //left arrow key pressed
     if (e.keyCode === 37) {
       moveToSlide(currentSlide - 1);
@@ -57,9 +59,6 @@ document.body.addEventListener("keydown", prevSlide);
 //
 
 //autoplay
-setInterval(function () {
+const intID = setInterval(function () {
   nextSlide();
-}, 8000);
-//
-//ADDITION: CEASE TO TRANSITION IF USER INTERACTS WITH SLIDES
-//
+}, 3000);
