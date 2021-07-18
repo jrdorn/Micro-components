@@ -1,5 +1,12 @@
-// || Variables
+// || Navbar with hamburger
 
-// || Setup
+const ham = document.querySelector(".ham");
+const navMenu = document.querySelector(".navMenu");
 
-// || Event Listeners
+//
+function mobileMenu() {
+  ham.classList.toggle("active");
+  navMenu.classList.toggle("active");
+}
+
+ham.addEventListener("click", mobileMenu);
