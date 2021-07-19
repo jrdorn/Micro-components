@@ -20,3 +20,16 @@ function closeMenu() {
   ham.classList.remove("active");
   navMenu.classList.remove("active");
 }
+
+// || Side navbar
+
+//active link
+
+const linkColor = document.querySelectorAll(".sNavLink");
+
+function colorLink() {
+  linkColor.forEach((link) => link.classList.remove("active"));
+  this.classList.add("active");
+}
+
+linkColor.forEach((link) => link.addEventListener("click", colorLink));

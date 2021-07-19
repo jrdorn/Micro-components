@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width" />
     <title>Shop</title>
     <link rel="stylesheet" type="text/css" href="shop.css" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <!-- Login and signup -->
@@ -17,17 +21,36 @@
         <a href="#" class="navLogo">Market</a>
         <ul class="navMenu">
           <li class="navItem">
-            <a href="#" class="navLink">My Account</a>
+            <a href="#" class="navLink">
+              <span class="material-icons-outlined"> search </span> Search</a
+            >
           </li>
           <li class="navItem">
-            <a href="#" class="navLink">Returns & Orders</a>
+            <a href="#" class="navLink">
+              <span class="material-icons-outlined"> person </span> My
+              Account</a
+            >
           </li>
           <li class="navItem">
-            <a href="#" class="navLink">Cart</a>
+            <a href="#" class="navLink"
+              ><span class="material-icons-outlined"> local_mall </span>Returns
+              & Orders</a
+            >
           </li>
           <li class="navItem">
-            <a href="#" class="navLink">Checkout</a>
+            <a href="#" class="navLink">
+              <span class="material-icons-outlined"> shopping_cart </span>
+              Cart</a
+            >
           </li>
+          <!--  -->
+          <span class="material-icons-outlined"> email </span>
+          <span class="material-icons-outlined"> login </span>
+          <span class="material-icons-outlined"> question_answer </span>
+          <span class="material-icons-outlined"> description </span>
+          <span class="material-icons-outlined"> local_offer </span>
+          <span class="material-icons-outlined"> logout </span>
+          <!--  -->
         </ul>
         <div class="ham">
           <span class="bar"></span>
@@ -39,83 +62,104 @@
 
     <!-- Side navbar -->
 
-    <header class="sHeader">
-      <div class="sHeaderToggle">
-        <i class="bx bxMenu" id="headerToggle"></i>
-      </div>
-    </header>
-
     <div class="sNav" id="sNavbar">
       <nav class="sNavContainer">
         <div>
-          <a href="#" class="sNavNink sNavLogo">
+          <a href="#" class="sNavLink sNavLogo">
             <i class="bx bxsDisc sNavIcon"></i>
-            <span class="sNavLogoName">Code</span>
+            <span class="material-icons-outlined"> thumb_up </span>
+            <span class="sNavLogoName">Market</span>
           </a>
+
           <div class="sNavList">
+            <!--              -->
             <div class="sNavItems">
-              <h3 class="sNavSubtitle">Profile</h3>
+              <h3 class="sNavSubtitle">Trends</h3>
+
               <a href="#" class="sNavLink active">
                 <i class="bx bxHome sNavIcon"></i>
-                <span class="sNavName">Home</span>
+                <span class="sNavName">Best Selling </span>
               </a>
-              <div class="sNavDropdown">
-                <a href="#" class="sNavLink">
-                  <i class="bx bxUser sNavIcon"></i>
-                  <span class="sNavName">Profile</span>
-                  <i class="bx bxChevronDown sNavIcon sNavDropdownIcon"></i>
-                </a>
-                <div class="sNavDropdownCollapse">
-                  <div class="sNavDropdownContent">
-                    <a href="#" class="sNavDropdownItem">Passwords</a>
-                    <a href="#" class="sNavDropdownItem">Mail</a>
-                    <a href="#" class="sNavDropdownItem">Accounts</a>
-                  </div>
-                </div>
-              </div>
+
               <a href="#" class="sNavLink">
-                <i class="bx bxMessage sNavIcon"></i>
-                <span class="sNavName">Messages</span>
+                <i class="bx bxUser sNavIcon"></i>
+                <span class="sNavName">Daily Deals</span>
+              </a>
+
+              <a href="#" class="sNavLink">
+                <i class="bx bxUser sNavIcon"></i>
+                <span class="sNavName">New Items</span>
               </a>
             </div>
+
+            <!--              -->
             <div class="sNavItems">
-              <h3 class="sNavSubtitle">Menu</h3>
+              <h3 class="sNavSubtitle">Departments</h3>
+
               <div class="sNavDropdown">
                 <a href="#" class="sNavLink">
                   <i class="bx bxBell sNavIcon"></i>
-                  <span class="sNavName">Notifications</span>
+                  <span class="sNavName">Clothes</span>
                   <i class="bx bxChevronDown sNavIcon sNavDropdownIcon"></i>
                 </a>
+
                 <div class="sNavDropdownCollapse">
                   <div class="sNavDropdownContent">
-                    <a href="#" class="sNavDropdownItem">Blocked</a>
-                    <a href="#" class="sNavDropdownItem">Silenced</a>
-                    <a href="#" class="sNavDropdownItem">Publish</a>
-                    <a href="#" class="sNavDropdownItem">Program</a>
+                    <a href="#" class="sNavDropdownItem">Men</a>
+                    <a href="#" class="sNavDropdownItem">Women</a>
+                    <a href="#" class="sNavDropdownItem">Children</a>
                   </div>
                 </div>
               </div>
+
               <a href="#" class="sNavLink">
                 <i class="bx bxCompass sNavIcon"></i>
-                <span class="sNavName">Explore</span>
+                <span class="sNavName">Electronics</span>
               </a>
+
               <a href="#" class="sNavLink">
-                <i class="bx bxBookmark sNavIcon"></i>
-                <span class="sNavName">Saved</span>
+                <i class="bx bxCompass sNavIcon"></i>
+                <span class="sNavName">Books</span>
               </a>
+
+              <a href="#" class="sNavLink">
+                <i class="bx bxCompass sNavIcon"></i>
+                <span class="sNavName">Toys</span>
+              </a>
+
+              <a href="#" class="sNavLink">
+                <i class="bx bxCompass sNavIcon"></i>
+                <span class="sNavName">Games</span>
+              </a>
+
+              <!--                -->
+              <div class="sNavItems">
+                <h3 class="sNavSubtitle">Support</h3>
+
+                <a href="#" class="sNavLink">
+                  <i class="bx bxBookmark sNavIcon"></i>
+                  <span class="sNavName">Terms of Use</span>
+                </a>
+                <a href="#" class="sNavLink">
+                  <i class="bx bxBookmark sNavIcon"></i>
+                  <span class="sNavName">Privacy Policy</span>
+                </a>
+                <a href="#" class="sNavLink">
+                  <i class="bx bxBookmark sNavIcon"></i>
+                  <span class="sNavName">Contact</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
-        <a href="#" class="sNavLink sNavLogout">
-          <i class="bx bxLogout sNavIcon"></i>
-          <span class="sNavName">Log Out</span>
-        </a>
       </nav>
     </div>
 
-    <!-- Like button -->
-
     <!-- Comment  -->
+    <span class="material-icons-outlined"> insert_comment </span>
+
+    <!-- Like button -->
+    <span class="material-icons-outlined"> thumb_up </span>
 
     <!-- Search with autocomplete  -->
 
