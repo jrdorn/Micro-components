@@ -22,6 +22,32 @@ html {
   box-sizing: inherit;
 }
 
+/* || Grid layout */
+
+/* .navHead {
+  grid-area: topnav;
+  background-color: red;
+}
+
+#sNavbar {
+  grid-area: sidenav;
+  background-color: blue;
+}
+
+#authForms {
+  grid-area: authforms;
+  background-color: green;
+}
+
+body {
+  display: grid;
+  grid-template-areas:
+    "sidenav" "topnav"
+    "sidenav" "authforms";
+  grid-template-columns: 100%;
+  grid-template-rows: auto auto 1fr auto;
+} */
+
 /* || Navbar with hamburger */
 
 li {
