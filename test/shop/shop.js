@@ -34,31 +34,9 @@ function colorLink() {
 
 linkColor.forEach((link) => link.addEventListener("click", colorLink));
 
-// || Login sessions with local storage
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
 
 const uName = document.querySelector("#name");
 const uPw = document.querySelector("#pw");
-
-//store input from register form
-function store() {
-  localStorage.setItem("uName", uName.value);
-  localStorage.setItem("uPw", uPw.value);
-}
-
-//
-function check() {
-  //
-  const storeName = localStorage.getItem("uName");
-  const storePw = localStorage.getItem("uPw");
-
-  //
-  const userName = document.querySelector("userName");
-  const userPw = document.querySelector("userPw");
-
-  //
-  if (userName.value === storeName && userPw.value === storePw) {
-    alert("fail");
-  } else {
-    alert("success");
-  }
-}
