@@ -43,7 +43,7 @@
           }),
         }).then((res) => res.json());
 
-        if (result.status === "ok") {
+        if (result.status === "OK") {
           // everythign went fine
           console.log("Got the token: ", result.data);
           localStorage.setItem("token", result.data);

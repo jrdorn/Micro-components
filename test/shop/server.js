@@ -6,14 +6,27 @@ const User = require("./model/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-const JWT_SECRET =
-  "hkhh*9jifk&u@q8hshkdj8@d^y2d#kbef3h&*msj!3afsufg@#bjdd(bj2j9sb";
+/* const JWT_SECRET =
+   "hkhh*9jifk&u@q8hshkdj8@d^y2d#kbef3h&*msj!3afsufg@#bjdd(bj2j9sb";
+   */
 
-mongoose.connect("mongodb://localhost:27017/login-app-db", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true,
-});
+//
+//
+//
+
+mongoose
+  .connect(
+    "mongodb://dbAdmin:m0ngoDb4287@cluster0.fx7rj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+    }
+  )
+  .catch((error) => console.log(error));
+//
+//
+//
 
 const app = express();
 app.use("/", express.static(path.join(__dirname, "static")));
@@ -44,7 +57,7 @@ app.post("/api/change-password", async (req, res) => {
         $set: { password },
       }
     );
-    res.json({ status: "ok" });
+    res.json({ status: "OK" });
   } catch (error) {
     console.log(error);
     res.json({ status: "error", error: ";))" });
@@ -69,7 +82,7 @@ app.post("/api/login", async (req, res) => {
       JWT_SECRET
     );
 
-    return res.json({ status: "ok", data: token });
+    return res.json({ status: "OK", data: token });
   }
 
   res.json({ status: "error", error: "Invalid username/ password" });
