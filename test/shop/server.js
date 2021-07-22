@@ -1,37 +1,35 @@
 const express = require("express");
 const path = require("path");
+
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const User = require("./model/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-/* const JWT_SECRET =
-   "hkhh*9jifk&u@q8hshkdj8@d^y2d#kbef3h&*msj!3afsufg@#bjdd(bj2j9sb";
-   */
+/** */
+/** */
+/** HIDE SECRETS */
+const JWT_SECRET = "000";
 
-//
-//
-//
-
+//Connect to MongoDB
 mongoose
-  .connect(
-    "mongodb://dbAdmin:m0ngoDb4287@cluster0.fx7rj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-    }
-  )
+  .connect("000", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+  })
   .catch((error) => console.log(error));
-//
-//
-//
+/** HIDE SECRETS */
+/** */
+/** */
 
+//Express server
 const app = express();
 app.use("/", express.static(path.join(__dirname, "static")));
 app.use(bodyParser.json());
 
+//
 app.post("/api/change-password", async (req, res) => {
   const { token, newPassword: plainTextPassword } = req.body;
 
@@ -39,7 +37,7 @@ app.post("/api/change-password", async (req, res) => {
     return res.json({ status: "error", error: "Invalid password" });
   }
 
-  if (plainTextPassword.length < 7) {
+  if (plainTextPassword.length < 8) {
     return res.json({
       status: "error",
       error: "Password must be at least 8 characters",
@@ -64,6 +62,7 @@ app.post("/api/change-password", async (req, res) => {
   }
 });
 
+//
 app.post("/api/login", async (req, res) => {
   const { username, password } = req.body;
   const user = await User.findOne({ username }).lean();
@@ -88,6 +87,7 @@ app.post("/api/login", async (req, res) => {
   res.json({ status: "error", error: "Invalid username/ password" });
 });
 
+//
 app.post("/api/register", async (req, res) => {
   const { username, password: plainTextPassword } = req.body;
 
@@ -99,7 +99,7 @@ app.post("/api/register", async (req, res) => {
     return res.json({ status: "error", error: "Invalid password" });
   }
 
-  if (plainTextPassword.length < 7) {
+  if (plainTextPassword.length < 8) {
     return res.json({
       status: "error",
       error: "Password must be at least 8 characters",
@@ -125,7 +125,10 @@ app.post("/api/register", async (req, res) => {
   res.json({ status: "OK" });
 });
 
-/////////
+//Allow access to public files (stylesheets, scripts, and images)
+app.use("/public", express.static(__dirname + "/public"));
+
+//Run Express on port 3000
 app.listen(3000, () => {
   console.log("Success: server is running at port 3000");
 });
