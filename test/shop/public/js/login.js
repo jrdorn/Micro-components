@@ -1,16 +1,12 @@
-const form = document.querySelector("#reg-form");
-form.addEventListener("submit", registerUser);
+const form = document.querySelector("#login");
+form.addEventListener("submit", login);
 
-//handle user registration
-async function registerUser(event) {
-  //prevent page refresh on form submit
+async function login(event) {
   event.preventDefault();
-
   const username = document.querySelector("#username").value;
   const password = document.querySelector("#password").value;
 
-  //send JSON data to MongoDB
-  const result = await fetch("/api/register", {
+  const result = await fetch("/api/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -22,8 +18,10 @@ async function registerUser(event) {
   }).then((res) => res.json());
 
   if (result.status === "OK") {
-    // user registered
-    console.log(`${username} was successfully registered`);
+    //login successful
+    console.log("Got the token: ", result.data);
+    localStorage.setItem("token", result.data);
+    console.log(`${username} login successful`);
   } else {
     alert(result.error);
   }

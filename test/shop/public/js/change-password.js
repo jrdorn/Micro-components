@@ -1,29 +1,24 @@
 const form = document.querySelector("#reg-form");
 form.addEventListener("submit", registerUser);
 
-//handle user registration
 async function registerUser(event) {
-  //prevent page refresh on form submit
   event.preventDefault();
-
-  const username = document.querySelector("#username").value;
   const password = document.querySelector("#password").value;
 
-  //send JSON data to MongoDB
-  const result = await fetch("/api/register", {
+  const result = await fetch("/api/change-password", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      username,
-      password,
+      newpassword: password,
+      token: localStorage.getItem("token"),
     }),
   }).then((res) => res.json());
 
   if (result.status === "OK") {
-    // user registered
-    console.log(`${username} was successfully registered`);
+    // Password update successful
+    alert("Success");
   } else {
     alert(result.error);
   }

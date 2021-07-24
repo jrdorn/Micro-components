@@ -1,7 +1,6 @@
 const express = require("express");
 const path = require("path");
 
-const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const User = require("./models/user");
 const bcrypt = require("bcryptjs");
@@ -27,9 +26,12 @@ mongoose
 //Express server
 const app = express();
 app.use("/", express.static(path.join(__dirname, "static")));
-app.use(bodyParser.json());
 
-//
+//Parse requests with JSON payloads
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+//Change user's password
 app.post("/api/change-password", async (req, res) => {
   const { token, newPassword: plainTextPassword } = req.body;
 
@@ -62,7 +64,7 @@ app.post("/api/change-password", async (req, res) => {
   }
 });
 
-//
+//Authenticate login
 app.post("/api/login", async (req, res) => {
   const { username, password } = req.body;
   const user = await User.findOne({ username }).lean();
@@ -87,7 +89,7 @@ app.post("/api/login", async (req, res) => {
   res.json({ status: "error", error: "Invalid username/ password" });
 });
 
-//
+//Register new user
 app.post("/api/register", async (req, res) => {
   const { username, password: plainTextPassword } = req.body;
 
