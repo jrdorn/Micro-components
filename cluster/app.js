@@ -63,3 +63,23 @@ const midFunc = function (req, res, next) {
 };
 //use for a specific route and HTTP verb
 app.get("/fakeroute", midFunc);
+
+//serve static files, specify mount path to load with prefix /media
+app.use("/media", express.static("public"));
+
+//Return array
+const MongoClient = require("mongodb").MongoClient;
+
+// MongoClient.connect("000", function (err, client) {
+//   if (err) throw err;
+
+//   const db = client.db("shop0");
+
+//   db.collection("users")
+//     .find()
+//     .toArray(function (err, result) {
+//       if (err) throw err;
+//       console.log(result);
+//       client.close();
+//     });
+// });
