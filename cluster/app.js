@@ -4,13 +4,12 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
-//
+//import square module
 const square = require("./square");
 
-//route definition
-//callback function that is invoked whenever there is an HTTP GET request
-//with a path relative to the site root
+//routing callback function to handle HTTP GET requests to the site root
 app.get("/", (req, res) => {
+  //method calls send() on the response to return string
   res.send("Hello world!");
 });
 
@@ -18,6 +17,16 @@ app.get("/", (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 
-  //
-  console.log("The area of a square with a width of 5 is " + square.area(5));
+  //call area function from square module
+  console.log(
+    `The area of a square with a width of 5 is ${square.area(
+      5
+    )}, and its perimeter is ${square.perimeter(5)}`
+  );
 });
+
+//async API
+setTimeout(function () {
+  console.log(1);
+}, 3000);
+console.log(2);
