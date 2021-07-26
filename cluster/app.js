@@ -50,3 +50,16 @@ app.all("/secret", function (req, res, next) {
 //add wiki router to middleware handling path
 const wiki = require("./wiki");
 app.use("/wiki", wiki);
+
+//HTTP request logger
+const logger = require("morgan");
+//call use() on Express app object to add middleware to stack
+app.use(logger("dev"));
+
+//Test middleware function
+const midFunc = function (req, res, next) {
+  console.log("Middleware function running...");
+  next(); //Express calls next middleware function in the chain
+};
+//use for a specific route and HTTP verb
+app.get("/fakeroute", midFunc);
