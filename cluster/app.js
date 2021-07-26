@@ -32,11 +32,21 @@ setTimeout(function () {
 console.log(2);
 
 //test error handling
-const fs = require("fs");
-fs.readFile("/fake.txt", (err, data) => {
-  if (err) {
-    console.log(err);
-    return;
-  }
-  console.log(data);
+// const fs = require("fs");
+// fs.readFile("/fake.txt", (err, data) => {
+//   if (err) {
+//     //custom error message
+//     throw new Error("404: File Not Found");
+//   }
+//   console.log(data);
+// });
+
+//call in response to any HTTP method
+app.all("/secret", function (req, res, next) {
+  console.log("Accessing secret section...");
+  next();
 });
+
+//add wiki router to middleware handling path
+const wiki = require("./wiki");
+app.use("/wiki", wiki);
