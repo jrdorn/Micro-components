@@ -30,3 +30,13 @@ setTimeout(function () {
   console.log(1);
 }, 3000);
 console.log(2);
+
+//test error handling
+const fs = require("fs");
+fs.readFile("/fake.txt", (err, data) => {
+  if (err) {
+    console.log(err);
+    return;
+  }
+  console.log(data);
+});
