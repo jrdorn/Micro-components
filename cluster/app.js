@@ -83,3 +83,29 @@ const MongoClient = require("mongodb").MongoClient;
 //       client.close();
 //     });
 // });
+
+//EJS templating engine
+const ejs = require("ejs");
+app.set("view engine", "ejs");
+
+const capitalList = [
+  {
+    country: "Bosnia",
+    capital: "Sarajevo",
+  },
+  {
+    country: "Zimbabwe",
+    capital: "Harare",
+  },
+  {
+    country: "Japan",
+    capital: "Tokyo",
+  },
+];
+
+//capitals page
+app.get("/capitals", (req, res) => {
+  //first param is ejs file to render,
+  //second param is object to send to ejs file
+  res.render("index.ejs", { capitalList: capitalList });
+});

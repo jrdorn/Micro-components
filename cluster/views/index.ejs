@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('./partials/head'); %>
+  </head>
+  <body>
+    <header><%- include('./partials/header'); %></header>
+
+    <table>
+      <tr>
+        <th>Country</th>
+        <th>Capital</th>
+      </tr>
+
+      <% capitalList.forEach(c => { %>
+      <tr>
+        <td><%= c.country %></td>
+        <td><%= c.capital %></td>
+      </tr>
+
+      <% }); %>
+    </table>
+
+    <footer><%- include('./partials/footer'); %></footer>
+  </body>
+</html>
