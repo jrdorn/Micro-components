@@ -6,12 +6,15 @@ var logger = require("morgan");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
+var catalogRouter = require("./routes/catalog");
 
 var app = express();
 
 // mongoose connection
 const mongoose = require("mongoose");
+/** */
 const mongoDB = "000";
+/** */
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error"));
@@ -31,6 +34,7 @@ app.use(express.static(path.join(__dirname, "public")));
 // define site routes
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
+app.use("/catalog", catalogRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
