@@ -13,12 +13,15 @@ var app = express();
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
+// add middleware libraries into request handling chain
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+// serve all static files in /public
 app.use(express.static(path.join(__dirname, "public")));
 
+// define site routes
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 
