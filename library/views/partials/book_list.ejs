@@ -1,31 +1,27 @@
-<h1><%= book_list_title %></h1>
+<h1><%= title %></h1>
 
 <ul>
 
-    <% if(book_list){ %>
+    <% if(Object.keys(book_list).length > 0){ %>
 
-        book_list.sort(function(a, b) {
-            let textA = a.title.toUpperCase(); 
-            let textB = b.title.toUpperCase(); 
-            return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
-        });
+        <%
+            book_list.sort(function(a, b) {
+                let textA = a.title.toUpperCase(); 
+                let textB = b.title.toUpperCase(); 
+                return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+            });
+        %>
 
-        for (const book of book_list){
-            <li>
-                <a href='book.url'>book.title book.author.name</a>
-            </li>
-        }
+        <% for (let index in book_list) { %>
 
-    <% } else{ %>
-    <li>There are no books.</li>
+            <% let book = book_list[index]; %>
+
+            <li><a href= <%- book.url %> ><%- book.title %>, <%- book.author.name %></a></li>
+
+        <% } %>
+    
+    <% } else { %>
+        <li>There are no books.</li>
     <% } %>
 
 </ul>
-
-
-
-
-
-
-
-

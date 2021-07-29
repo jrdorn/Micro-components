@@ -7,8 +7,21 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-2"><%- include('./partials/sidebar'); %></div>
-        <div class="col-sm-10"><%- include('./partials/content'); %></div>
+        <div class="col-sm-10">
+          
+          <% if (title === 'Library Home'){ %>
+            <%- include('./partials/content'); %>
+
+          <% } else if (title === 'Book List'){ %>
+            <%- include('./partials/book_list'); %>
+        
+          <% } %>
+        </div>
+
       </div>
     </div>
   </body>
 </html>
+
+
+
