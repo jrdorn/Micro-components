@@ -8,13 +8,16 @@
 <% } else{ %>
 <p>The library has the following record counts:</p>
 <ul>
-  <!-- li #[strong Books:] !{data.book_count} -->
-  <li><strong> Books: !{data.book_count} </strong></li>
-  <li><strong>Copies: !{data.book_instance_count}</strong></li>
+  <li><strong> Books: <%= data.book_count %> </strong></li>
   <li>
-    <strong>Copies available: !{data.book_instance_available_count}</strong>
+    <strong>Copies: <%= data.book_instance_count %> </strong>
   </li>
-  <li><strong>Authors: !{data.author_count}</strong></li>
-  <li><strong>Genres: !{data.genre_count}</strong></li>
+  <li>
+    <strong
+      >Copies available: <%= data.book_instance_available_count %>
+    </strong>
+  </li>
+  <li><strong>Authors: <%= data.author_count %> </strong></li>
+  <li><strong>Genres: <%= data.genre_count %> </strong></li>
 </ul>
 <% } %>

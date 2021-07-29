@@ -1,0 +1,31 @@
+<h1><%= book_list_title %></h1>
+
+<ul>
+
+    <% if(book_list){ %>
+
+        book_list.sort(function(a, b) {
+            let textA = a.title.toUpperCase(); 
+            let textB = b.title.toUpperCase(); 
+            return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+        });
+
+        for (const book of book_list){
+            <li>
+                <a href='book.url'>book.title book.author.name</a>
+            </li>
+        }
+
+    <% } else{ %>
+    <li>There are no books.</li>
+    <% } %>
+
+</ul>
+
+
+
+
+
+
+
+
