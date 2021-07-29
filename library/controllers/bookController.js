@@ -1,7 +1,32 @@
 var Book = require("../models/book");
+var Author = require("../models/author");
+var Genre = require("../models/genre");
+var BookInstance = require("../models/bookinstance");
+
+var async = require("async");
 
 exports.index = function (req, res) {
-  res.send("NOT IMPLEMENTED: Site homepage");
+  // get the counts for each model
+  async.parallel(
+    {
+      book_count: function (callback) {
+        Book.countDocuments({}, callback); //empty object as match condition to find all docs in collection
+      },
+      book_instance_count: function (callback) {
+        BookInstance.countDocuments({}, callback);
+      },
+      author_count: function (callback) {
+        Author.countDocuments({}, callback);
+      },
+      genre_count: function (callback) {
+        Genre.countDocuments({}, callback);
+      },
+    },
+    //counts are passed to view "index" via results object
+    function (err, results) {
+      res.render("index", { title: "Library Home", error: err, data: results });
+    }
+  );
 };
 
 // display list of all books
