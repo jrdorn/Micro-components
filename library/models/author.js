@@ -1,3 +1,5 @@
+const { DateTime } = require("luxon");
+
 const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
@@ -30,6 +32,28 @@ AuthorSchema.virtual("lifespan").get(function () {
   }
   return lifeString;
 });
+
+//
+//
+//
+
+// virtual for DOB formatting
+AuthorSchema.virtual("date_of_birth_formatted").get(function () {
+  return this.date_of_birth
+    ? DateTime.fromJSDate(this.date_of_birth).toLocaleString(DateTime.DATE_MED)
+    : "";
+});
+
+// virtual for DOD formatting
+AuthorSchema.virtual("date_of_death_formatted").get(function () {
+  return this.date_of_death
+    ? DateTime.fromJSDate(this.date_of_death).toLocaleString(DateTime.DATE_MED)
+    : "";
+});
+
+//
+//
+//
 
 // virtual that returns absolute URL needed to get one instance of the model
 AuthorSchema.virtual("url").get(function () {
