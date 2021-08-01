@@ -2,11 +2,11 @@
 
 <ul>
 
-    <% if(Object.keys(genre).length > 0){ %>
+    <% if(Object.keys(genre_list).length > 0){ %>
 
-        <% for (let index in genre) { %>
+        <% for (let index in genre_list) { %>
 
-            <% let genre = genre[index]; %>
+            <% let genre = genre_list[index]; %>
 
             <li><a href= <%- genre.url %> ><%- genre.name %></a> </li>
 
