@@ -1,0 +1,19 @@
+<h1>Genre: <%= title %></h1>
+
+<h4> Books </h4>
+
+    <% if(Object.keys(genre_books).length > 0){ %>
+        <dl>
+            <% for (let index in genre_books) { %>
+
+                <% let book = genre_books[index]; %>
+
+                <dt><a href= <%- book.url %> ><%- book.title %></a> </dt>
+                <dd><%- book.summary %></dd>
+
+            <% } %>
+        </dl>
+    
+    <% } else { %>
+        <p>This genre has no books</p>
+    <% } %>
