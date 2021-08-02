@@ -1,0 +1,51 @@
+<h1><%= title %></h1>
+
+<h2> Book: <%= subtitle %> </h2>
+
+    <% book_instances = {} %>
+
+    <% if(Object.keys(book_instances).length > 0){ %>
+
+
+        <p><strong>Author: </strong> <a href= <%-book.author.url %> > <%- book.author.name %> </a></p>
+        <p><strong>Summary: </strong> <%- book.summary %> </p>
+        <p><strong>ISBN: </strong> <%- book.isbn %> </p>
+        <p><strong>Genre:</strong></p>
+
+        <div style='margin-left:20px;margin-top:20px'>
+            <h4>Copies</h4>
+
+            <% for (let val of book_instances) { %>
+                <hr>
+                <% if (val.status === 'Available') { %>
+                    <p class='text-success'> <%- val.status %> </p>
+                <% } else if (val.status === 'Maintenance') { %>
+                    <p class='text-danger'> <%- val.status %> </p>
+                <% } else { %>
+                    <p class='text-warning'> <%- val.status %> </p>
+                <% } %>
+
+
+            <% } %>
+
+            <p><strong>Imprint: <%- val.imprint %> </strong></p>
+
+            <% if (val.status !== 'Available') { %>
+                <p><strong>Due back: <%- val.due_back %></strong></p>
+            <% } %>
+        </div>
+
+        <dl>
+            <% for (let index in genre_books) { %>
+
+                <% let book = genre_books[index]; %>
+
+                <dt><a href= <%- book.url %> ><%- book.title %></a> </dt>
+                <dd><%- book.summary %></dd>
+
+            <% } %>
+        </dl>
+    
+    <% } else { %>
+        <p>There are no copies of this book in the library.</p>
+    <% } %>
