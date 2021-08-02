@@ -50,14 +50,12 @@ exports.book_list = function (req, res, next) {
 
 // detail page for a book
 exports.book_detail = function (req, res, next) {
-  console.log("weird");
-
   async.parallel(
     {
       book: function (callback) {
         Book.findById(req.params.id)
           .populate("author")
-          // .populate("genre")
+          .populate("genre")
           .exec(callback);
       },
       book_instance: function (callback) {
