@@ -2,8 +2,6 @@
 
 <h2> Book: <%= subtitle %> </h2>
 
-    <% book_instances = {} %>
-
     <% if(Object.keys(book_instances).length > 0){ %>
 
 
@@ -11,6 +9,9 @@
         <p><strong>Summary: </strong> <%- book.summary %> </p>
         <p><strong>ISBN: </strong> <%- book.isbn %> </p>
         <p><strong>Genre:</strong></p>
+        <% for (let val of book.genre) { %>
+            <a href=<%- val.url %> > <%- val.name %> </a>
+        <% } %>
 
         <div style='margin-left:20px;margin-top:20px'>
             <h4>Copies</h4>
@@ -35,16 +36,6 @@
             <% } %>
         </div>
 
-        <dl>
-            <% for (let index in genre_books) { %>
-
-                <% let book = genre_books[index]; %>
-
-                <dt><a href= <%- book.url %> ><%- book.title %></a> </dt>
-                <dd><%- book.summary %></dd>
-
-            <% } %>
-        </dl>
     
     <% } else { %>
         <p>There are no copies of this book in the library.</p>

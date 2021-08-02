@@ -49,13 +49,15 @@ exports.book_list = function (req, res, next) {
 };
 
 // detail page for a book
-exports.book_detail = function (req, res) {
+exports.book_detail = function (req, res, next) {
+  console.log("weird");
+
   async.parallel(
     {
       book: function (callback) {
         Book.findById(req.params.id)
           .populate("author")
-          .populate("genre")
+          // .populate("genre")
           .exec(callback);
       },
       book_instance: function (callback) {
@@ -66,13 +68,13 @@ exports.book_detail = function (req, res) {
       if (err) {
         return next(err);
       }
-      if (results.book === null) {
-        //no results
-        let err = new Error("Book not found");
+      if (results.book == null) {
+        // No results.
+        var err = new Error("Book not found");
         err.status = 404;
         return next(err);
       }
-      //render on success
+      // Successful, so render.
       res.render("index", {
         title: "Book Detail",
         subtitle: results.book.title,

@@ -14,7 +14,7 @@ exports.genre_list = function (req, res, next) {
 };
 
 // detail page for an genre
-exports.genre_detail = function (req, res) {
+exports.genre_detail = function (req, res, next) {
   async.parallel(
     {
       genre: function (callback) {
