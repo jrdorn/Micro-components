@@ -33,10 +33,6 @@ AuthorSchema.virtual("lifespan").get(function () {
   return lifeString;
 });
 
-//
-//
-//
-
 // virtual for DOB formatting
 AuthorSchema.virtual("date_of_birth_formatted").get(function () {
   return this.date_of_birth
@@ -51,9 +47,20 @@ AuthorSchema.virtual("date_of_death_formatted").get(function () {
     : "";
 });
 
-//
-//
-//
+// virtual lifespan
+AuthorSchema.virtual("lifespan").get(function () {
+  if (this.date_of_birth && this.date_of_death) {
+    let birth = DateTime.fromJSDate(this.date_of_birth).toLocaleString(
+      DateTime.DATE_MED
+    );
+    let death = DateTime.fromJSDate(this.date_of_death).toLocaleString(
+      DateTime.DATE_MED
+    );
+    return `${birth} - ${death}`;
+  } else {
+    return "";
+  }
+});
 
 // virtual that returns absolute URL needed to get one instance of the model
 AuthorSchema.virtual("url").get(function () {
