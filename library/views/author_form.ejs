@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head'); %>
+  </head>
+  <body>
+      <h1> <%- title %></h1>
+      
+
+      <% let auth_first ='', auth_family='', auth_birth = '', auth_death = ''; %>
+      <% if(author !== undefined) { %>
+        <% auth_first = author.first_name; %>
+        <% auth_family = author.family_name; %>
+        <% auth_birth = author.date_of_birth; %>
+        <% auth_death = author.date_of_death; %>
+      <% } %>
+
+
+        <form method='POST' action=''>
+            <div class='form-group'>
+                <label for='first_name'>
+                    First name: 
+                </label>
+                <input id='first_name' class='form-control' type='text' placeholder='First name (e.g. Christian)' name='first_name' required='true' value= <%- auth_first %> > 
+                
+                <label for='family_name'>
+                    Family name: 
+                </label>
+                <input id='family_name' class='form-control' type='text' placeholder='First name (surname)' name='family_name' required='true' value= <%- auth_family %> > 
+
+            </div>
+            <div class='form-group'>
+                <label for='date_of_birth'>
+                    Date of birth:
+                </label>
+                <input id='date_of_birth' class='form-control' type='date' name='date_of_birth' value= <%- auth_birth %> >
+
+                <label for='date_of_death'>
+                    Date of death:
+                </label>
+                <input id='date_of_death' class='form-control' type='date' name='date_of_death' value= <%- auth_death %> >
+
+                <button class='btn-primary' type='submit'>Submit</button>
+            </div>
+        </form>
+
+        <% if (errors !== undefined) { %>
+            <ul>
+                <% for (let error of errors) { %>
+                    <li><%- error.msg %></li>
+                <% } %>
+            </ul>
+        <% } %>
+  </body>
+</html>
+
+
+
