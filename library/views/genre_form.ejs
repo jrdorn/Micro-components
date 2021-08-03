@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head'); %>
+  </head>
+  <body>
+      <h1> <%- title %></h1>
+      
+      <% let gName = ''; %>
+      <% if(genre !== undefined) { %>
+        <% gName = genre.name; %>
+      <% } %>
+
+
+        <form method='POST' action=''>
+            <div class='form-group'>
+                <label for='name'>
+                    Genre: 
+                </label>
+                <span>
+                    <input class='form-control' type='text' placeholder='Fantasy, Poetry etc.' name='name' value= <%- gName %> > 
+                    <button class='btn-primary' type='submit'> Submit </button>
+                </span>
+            </div>
+        </form>
+
+
+        <% if (errors !== undefined) { %>
+            <ul>
+                <% for (let error of errors) { %>
+                    <li><%- error.msg %></li>
+                <% } %>
+            </ul>
+        <% } %>
+  </body>
+</html>
+
+
+
