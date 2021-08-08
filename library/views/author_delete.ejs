@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head'); %>
+  </head>
+  <body>
+      <h1> <%- title %>: <%- author.name %></h1>
+      <p><%- author.lifespan %></p>
+      
+
+      <% if (author_books.length) { %>
+        <p>paragraph</p>
+        <div style='margin-left:20px;margin-top:20px'>
+            <h4>Books</h4>
+        </div>
+
+        <dl>
+            <% for (let book of author_books) { %>
+                <dt>
+                    <a href= <%- book.url %> <%- book.title %> </a>
+                </dt>
+            <% } %>
+        </dl>
+
+
+      <% } else { %>
+        <p>Do you really want to delete this Author?</p>
+        <form method='POST' action=''>
+            <div class='form-group'>
+                <input id='authorid' class='form-control' type='hidden' name='authorid' required='true' value= <%- author._id %> >
+            </div>
+            <button class='btn btn-primary' type='submit'>Delete</button>
+        </form>
+
+      <% } %>
+
+
+
+
+
+
+      <% let book_title ='', book_summary='', book_isbn = '', %>
+      <% if(author !== undefined) { %>
+        <% book_title = book.title; %>
+        <% book_summary = book.summary; %>
+        <% book_isbn= book.isbn; %>
+      <% } %>
+
+        <form method='POST' action=''>
+            <div class='form-group'>
+                <label for='book'>
+                    Book: 
+                </label>
+                <select id='book' class='form-control' type='select' placeholder='Select book' name='book' required='true'>
+                    <% book_list.sort(function(a, b) { %>
+                        <% let textA = a.title.toUpperCase(); %>
+                        <% let textB = b.title.toUpperCase(); %>
+                        <% return (textA < textB) ? -1 : (textA > textB) ? 1 : 0; %>
+                    <% }); %>
+                    <% for (let book of book_list) { %>
+                        <% if(book)instance { %>
+                            <option value=<%- book._id %> selected=<%- (bookinstance.book.toString()===book._id.toString() ? 'selected' : false) %> > <%- book.title %> </option>
+                        <% } else { %>
+                            <option value=<%- book._id %> > <%- book.title %> </option>
+                        <% } %>
+                    <% } %>
+                </select>
+            </div>
+
+            <div class='form-group'>
+                <label for='imprint'>Imprint: </label>
+                <input id='imprint' class='form-control' type='text' placeholder='Publisher and date information' name='imprint' required='true' value= <%- undefined===bookinstance ? '' : bookinstance.imprint %> >
+            </div>
+
+            <div class='form-group'>
+                <label for='due_back'>Date when book available: </label>
+                <input id='due_back' class='form-control' type='date'  value= <%- undefined===bookinstance ? '' : bookinstance.due_back %> >
+            </div>
+
+            <div class='form-group'>
+                <label for='status'>Status: </label>
+                <select id='status' class='form-control' type='select' placeholder='Select status' name='status' required='true'>
+                    <option value='Maintenance'>Maintenance</option>
+                    <option value='Available'>Available</option>
+                    <option value='Loaned'>Loaned</option>
+                    <option value='Reserved'>Reserved</option>
+                </select>
+                <button class='btn btn-primary' type='submit'>Submit</button>
+            </div>
+
+        </form>
+
+        <% if (errors !== undefined) { %>
+            <ul>
+                <% for (let error of errors) { %>
+                    <li><%- error.msg %></li>
+                <% } %>
+            </ul>
+        <% } %>
+  </body>
+</html>

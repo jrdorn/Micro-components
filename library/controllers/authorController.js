@@ -150,8 +150,41 @@ exports.author_delete_get = function (req, res) {
 };
 
 // handle author delete on POST
-exports.author_delete_post = function (req, res) {
-  res.send("NOT IMPLEMENTED: Author delete POST");
+exports.author_delete_post = function (req, res, next) {
+  async.parallel(
+    {
+      author: function (callback) {
+        Author.findById(req.body.authorid).exec(callback);
+      },
+      authors_books: function (callback) {
+        Book.find({ author: req.body.authorid }).exec(callback);
+      },
+    },
+    function (err, results) {
+      if (err) {
+        return next(err);
+      }
+      // on success
+      if (results.authors_books.length > 0) {
+        // Author has books - render like GET route
+        res.render("author_delete", {
+          title: "Delete Author",
+          author: results.author,
+          author_books: results.authors_books,
+        });
+        return;
+      } else {
+        // Author has no books- delete object and redirect to author list
+        Author.findByIdAndRemove(req.body.authorid, function deleteAuthor(err) {
+          if (err) {
+            return next(err);
+          }
+          // success- go to author list
+          res.redirect("/catalog/authors");
+        });
+      }
+    }
+  );
 };
 
 // display author update form on GET
