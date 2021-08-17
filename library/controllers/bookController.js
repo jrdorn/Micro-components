@@ -209,8 +209,60 @@ exports.book_delete_post = function (req, res) {
 };
 
 // display book update form on GET
-exports.book_update_get = function (req, res) {
-  res.send("NOT IMPLEMENTED: Book update GET");
+exports.book_update_get = function (req, res, next) {
+  // get book, authors, and genres for form
+  async.parallel(
+    {
+      book: function (callback) {
+        Book.findById(req.params.id)
+          .populate("author")
+          .populate("genre")
+          .exec(callback);
+      },
+      authors: function (callback) {
+        Author.find(callback);
+      },
+      genres: function (callback) {
+        Genre.find(callback);
+      },
+    },
+    function (err, results) {
+      if (err) {
+        return next(err);
+      }
+      if (results.book === null) {
+        //no results
+        var err = new Error("Book not found");
+        err.status = 404;
+        return next(err);
+      }
+      // success- mark the selected genres as checked
+      for (
+        let all_genres = 0;
+        all_genres < results.genres.length;
+        all_genres++
+      ) {
+        for (
+          let book_genre = 0;
+          book_genre < results.book.genre.length;
+          book_genre++
+        ) {
+          if (
+            results.genres[all_genres]._id.toString() ===
+            results.book.genre[book_genre]._id.toString()
+          ) {
+            results.genres[all_genres].checked = "true";
+          }
+        }
+      }
+      res.render("book_form", {
+        title: "Update Book",
+        authors: results.authors,
+        genres: results.genres,
+        book: results.book,
+      });
+    }
+  );
 };
 
 // handle book update on POST
