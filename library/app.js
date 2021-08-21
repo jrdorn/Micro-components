@@ -9,6 +9,7 @@ var usersRouter = require("./routes/users");
 var catalogRouter = require("./routes/catalog");
 
 var compression = require("compression");
+var helmet = require("helmet");
 
 var app = express();
 
@@ -24,6 +25,9 @@ db.on("error", console.error.bind(console, "MongoDB connection error"));
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
+
+// protect app from common vulnerabilities
+app.use(helmet());
 
 // add middleware libraries into request handling chain
 app.use(logger("dev"));
